@@ -1,0 +1,581 @@
+@import 'initializ.scss';
+.slide-enter-active, .slide-leave-active {
+	@include transition-transform();
+}
+.slide-enter, .slide-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0;
+	@include translate($x: 100%);
+}
+.detailWrap{
+	background-color: #fff;
+	.detailBox{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		min-height: 110px;
+		@include respond('ipadL'){
+			height: auto;
+			overflow: auto;
+		}
+		@include respond('ipadP'){
+			height: 100%;
+		}
+		@include respond('iphoneP'){
+			height: auto;
+		}
+		.detail{
+			$slide: 30px;
+			// position: relative;
+			position: absolute;
+			bottom: $bodyPaddingD;
+			width: 100%;
+			height: auto;
+			box-sizing: border-box;
+			@include respond('ipadL'){
+				position: relative;
+				margin-top: 180px;
+			}
+			@include respond('ipadP'){
+				position: absolute;
+				margin-top: 0;
+				bottom: $bodyPaddingT;
+			}
+			@include respond('iphoneP'){
+				position: relative;
+				bottom: 0;
+			}
+			.detailHeader{
+				$h: 42px;
+				margin-bottom: 30px;
+				// height: $h;
+				opacity: 1;
+				@include translate($y: 0);
+				@include transition();
+				@include respond('ipadL'){
+					margin-bottom: 24px;
+				}
+				@include respond('iphoneP'){
+					margin-top: 40px;
+					height: auto;
+				}
+				.returnWrap{
+					$border: 2px;
+					$innerH: 28px - $border*2;
+					float: left;
+					display: inline-block;
+					margin-right: 5px;
+					margin-left: -($h - $innerH - $border*2)/2;
+					padding: ($h - $innerH - $border*2)/2;
+					width: $innerH + $border*2;
+					height: $innerH + $border*2;
+					cursor: pointer;
+					@include respond('iphoneP'){
+						display: none;
+					}
+					.returnBox{
+						width: $innerH;
+						height: $innerH;
+						border: 2px solid #000;
+						border-radius: 50%;
+						background-color: #000;
+						overflow: hidden;
+						@include transition($property: background-color);
+						.return{
+							display: inline-block;
+							width: 100%;
+							margin-right: 1px;
+							@include transition-transform($duration: .2s);
+							// @include translate($x: -20px);
+							& > li{
+								position: relative;
+								margin: 0 auto;
+								width: 8px;
+								height: $innerH/2;
+								& > div{
+									width: 100%;
+									height: 2px;
+									background-color: #fff;
+									@include transition-transform($duration: .2s);
+								}
+							}
+							$deg: 45deg;
+							$y: 1.2px;
+							.returnTop{
+								& > div{
+									position: absolute;
+									bottom: 0;
+									// @include translate($y: 1px);
+									@include transform($tx: 0, $ty: -$y, $deg: -$deg);
+								}
+							}
+							.returnBottom{
+								& > div{
+									// @include translate($y: -1px);
+									@include transform($tx: 0, $ty: $y, $deg: $deg);
+								}
+							}
+						}
+					}
+					&:hover{
+						.returnBox{
+							// background-color: #fff;
+							.return{
+								// & > li{
+								// 	& > div{
+								// 		background-color: #000;
+								// 	}
+								// }
+								// @include translate($x: 0);
+								// $deg: 30deg;
+								// $y: .5px;
+								.returnTop{
+									& > div{
+										@include translate($y: 1px);
+										// @include transform($tx: 0, $ty: -$y, $deg: -$deg);
+									}
+								}
+								.returnBottom{
+									& > div{
+										@include translate($y: -1px);
+										// @include transform($tx: 0, $ty: $y, $deg: $deg);
+									}
+								}
+							}
+						}
+					}
+				}
+				& > h1{
+					float: left;
+					display: inline-block;
+					height: $h;
+					font-size: 36px;
+					line-height: $h;
+					@include respond('iphoneP'){
+						margin-top: 10px;
+						height: auto;
+						line-height: auto;
+					}
+				}
+			}
+			.h1Ready{
+				@include translate($y: $slide);
+				opacity: 0;
+				.returnWrap{
+					.returnBox{
+						.return{
+							.returnTop{
+								& > div{
+									@include translate($y: 1px);
+								}
+							}
+							.returnBottom{
+								& > div{
+									@include translate($y: -1px);
+								}
+							}
+						}
+					}
+				}
+			}
+			.contentWrap{
+				clear: both;
+				height: auto;
+				width: 100%;
+				overflow: hidden;
+				.contentImgWrap{
+					float: none;
+					height: auto;
+					overflow: hidden;
+					-webkit-transition: width .2s ease .1s,height .2s ease .1s, opacity .2s ease 0s;
+					   -moz-transition: width .2s ease .1s,height .2s ease .1s, opacity .2s ease 0s;
+					     -o-transition: width .2s ease .1s,height .2s ease .1s, opacity .2s ease 0s;
+					        transition: width .2s ease .1s,height .2s ease .1s, opacity .2s ease 0s;
+					@include respond('iphoneP'){
+						height: auto;
+					}
+					.contentImgBox{
+						position: relative;
+						width: 100%;
+						height: 100%;
+						padding-top: 56.25%;
+						overflow: hidden;
+						@include respond('iphoneP'){
+							height: auto;
+							padding-top: 0;
+						}
+						.contentImg{
+							position: absolute;
+							top: 0;
+							height: 100%;
+							width: 100%;
+							@include transition-transform($timingFunction: cubic-bezier(.645, .045, .355, 1),$duration: .6s);
+							@include respond('iphoneP'){
+								position: relative;
+								height: auto;
+								overflow: hidden;
+							    -webkit-transform: none!important;
+							    -moz-transform: none!important;
+							    -ms-transform: none!important;
+							    -o-transform: none!important;
+							    transform: none!important;
+							}
+							& > li{
+								float: left;
+								height: 100%;
+								box-sizing: border-box;
+								// padding: 0 1px;
+								@include respond('iphoneP'){
+									float: none;
+									margin-bottom: $bodyPaddingP;
+								}
+								&:first-child{
+									@include respond('iphoneP'){
+										display: none;
+									}
+								}
+								&:last-child{
+									@include respond('iphoneP'){
+										display: none;
+									}
+								}
+							}
+						}
+						.hoverOverlay{
+							z-index: 2;
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							@include respond('iphoneP'){
+								display: none;
+							}
+							& > li{
+								float: left;
+								position: relative;
+								display: inline-block;
+								width: 50%;
+								height: 100%;
+								cursor: none;
+								& > div{
+									display: none;
+									z-index: -1;
+									position: absolute;
+									top: -10px;
+									$w: 3px;
+									& > div{
+										$bgc: #333;
+										@include transition-transform($duration: .1s,$timingFunction: ease);
+										& > ul{
+											overflow: hidden;
+											text-align: right;
+											& > span{
+												width: 20px;
+												height: $w;
+												background-color: $bgc;
+											}
+											& > li{
+												float: left;
+												text-align: right;
+												display: inline-block;
+												height: $w;
+												background-color: $bgc;
+											}
+										}
+										& > div{
+											position: absolute;
+											height: $w;
+											width: 16px;
+											background-color: $bgc;
+										}
+									}
+									$tran: 8px;
+									.leftActived{
+										@include translate($x: $tran);
+									}
+									.rightActived{
+										@include translate($x: -$tran);
+									}
+								}
+								&:hover{
+									& > div{
+										display: block;
+									}
+								}
+							}
+							$deg: 48deg;
+							$y: 5px;
+							.arrowLeft{
+								& > div{
+									& > div{
+										& > div{
+											left: -3px;
+										}
+										.aa{
+											// border-bottom: 2px solid #fff;
+											// border-left: 2px solid #fff;
+											@include transform($ty: $y, $deg: $deg);
+										}
+										.bb{
+											// border-top: 2px solid #fff;
+											// border-left: 2px solid #fff;
+											@include transform($ty: -$y, $deg: -$deg);
+										}
+										& > ul{
+											& > span{
+												float: left;
+											}
+											// & > li{
+											// 	&:last-child{
+											// 		margin-left: -2px;
+											// 		border-radius: 90px;
+											// 	}
+											// }
+										}
+									}
+								}
+							}
+							.arrowRight{
+								$width: 110px;
+								& > div{
+									margin-left: -$width;
+									& > div{
+										& > div{
+											right: -5px;
+										}
+										.aa{
+											@include transform($ty: $y, $deg: -$deg)
+										}
+										.bb{
+											@include transform($ty: -$y, $deg: $deg)
+										}
+										& > ul{
+											width: $width + 20px;
+											text-align: right;
+											& > li{
+												float: right;
+												// &:last-child{
+												// 	width: 20px!important;
+												// }
+											}
+											& > span{
+												float: right;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					.contentImgBoxFade{
+						@include transition();
+						@include translate($y: $slide);
+						opacity: 0;
+					}
+					.lightBoxClose{
+						// display: none;
+						font-size: 0;
+						opacity: 0;
+						-webkit-transition: -webkit-transform .2s ease .1s,opacity .2s ease .1s;
+						   -moz-transition: -moz-transform .2s ease .1s,opacity .2s ease .1s;
+						     -o-transition: -o-transform .2s ease .1s,opacity .2s ease .1s;
+						    	transition: transform .2s ease .1s,opacity .2s ease .1s;
+								 will-change: transform; //using gpu
+					}
+				}
+				.lightBox{
+					z-index: 79;
+					position: fixed;
+					top: 0;
+					left: 0;
+					padding: 0;
+					width: 100%;
+					height: 100%;
+					// background-color: #000;
+					opacity: 1!important;
+					// @include transition($delay: .1s);
+					-webkit-transition: width .2s ease .1s,height .2s ease .1s,padding .2s ease .1s;
+					   -moz-transition: width .2s ease .1s,height .2s ease .1s,padding .2s ease .1s;
+					     -o-transition: width .2s ease .1s,height .2s ease .1s,padding .2s ease .1s;
+					        transition: width .2s ease .1s,height .2s ease .1s,padding .2s ease .1s;
+					.slideBox{
+						position: relative;
+						top: 50%;
+						width: 100%;
+						height: 0;
+						margin-top: -28.125%;
+						padding-top: 56.25%;
+						overflow: hidden;
+						opacity: 1!important;
+						@include transition($property: opacity,$delay: .1s,$duration: .4s);
+						.slideBoxImg{
+							position: absolute;
+							top: 0;
+							height: 100%;
+							width: 100%;
+							@include transition-transform();
+							& > li{
+								float: left;
+								height: 100%;
+								background: #fff no-repeat center;
+								background-size: cover;
+								text-align: center;
+								& > img{
+									opacity: 0;
+									height: 100%;
+									width: 100%;
+								}
+							}
+						}
+					}
+					.lightBoxClose{
+						$w: 92px;
+						// display: block;
+						opacity: 1;
+						position: absolute;
+						top: 84.375%;
+						left: 50%;
+						margin-top: -$w/4;
+						margin-left: -$w/2;
+						height: $w/2;
+						width: $w;
+						font-size: 14px;
+						line-height: $w/2;
+						font-weight: 900;
+						letter-spacing: 12px;
+						color: #fff;
+						text-align: center;
+						text-transform: uppercase;
+						@include scale($x: 1.2, $y: 1.2);
+						// background-color: #fff;
+						// box-shadow: 0 0 8px #ccc;
+						// border: 2px solid #000;
+						// border-radius: 50%;
+					}
+				}
+				.lightBox,
+				.contentImgWrap{
+					.contentImgBox,
+					.slideBox{
+						.noTransition{
+							-webkit-transition: none 0s ease 0s;
+							   -moz-transition: none 0s ease 0s;
+								 -o-transition: none 0s ease 0s;
+									transition: none 0s ease 0s;
+						}
+						#contentImg{
+							& > li{
+								& > div{
+									height: 100%;
+									background: #fff no-repeat center;
+									background-size: cover;
+									text-align: center;
+									& > img{
+										opacity: 0;
+										height: 100%;
+										width: 100%;
+									}
+								}								
+							}
+						}
+					}					
+				}
+				.contentCapWrap{
+					float: right;
+					height: 100%;
+					@include respond('ipadL'){
+						float: none;
+						margin-bottom: 24px;
+					}
+					& > p{
+						margin-bottom: 20px;
+						height: auto;
+						font-size: 14px;
+						line-height: 26px;
+						opacity: 1;
+						@include transition();
+					}
+					.contentCapBox{
+						height: auto;
+						width: 100%;
+						max-width: 320px;
+						overflow: hidden;
+						opacity: 1;
+						@include translate($x: 0);
+						@include respond('ipadL'){
+							max-width: 100%;
+						}
+						.contentCap{
+							overflow: hidden;
+							// @include transition-transform();
+							@include respond('iphoneP'){
+								-webkit-transform: none!important;
+								-moz-transform: none!important;
+								-ms-transform: none!important;
+								-o-transform: none!important;
+								transform: none!important;
+							}
+							& > li{
+								float: left;
+								word-break: break-word;
+								font-size: 14px;
+								font-weight: 300;
+							}
+						}
+					}
+					.capReady{
+						@include translate($y: $slide);
+						opacity: 0;
+					}
+				}
+				.contentAction{
+					position: absolute;
+					bottom: 0;
+					right: 0;
+					opacity: 1;
+					@include transition();
+					@include respond('ipadL'){
+						display: none;
+					}
+					.next{
+						display: inline-block;
+						padding: 10px;
+						margin-left: -10px;
+						margin-bottom: -10px;
+						font-size: 18px;
+						font-weight: bold;
+						cursor: pointer;
+						@include transition($property: color);
+						&:hover{
+							color: #2196f3;
+						}
+					}
+				}
+				.actionReady{
+					@include translate($y: $slide);
+					opacity: 0;
+				}
+			}		
+		}
+	}
+	.lightBoxOverlay{
+		z-index: 29;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background-color: #000;
+		opacity: 0;
+		@include translate($y: 100%);
+		@include transition-transform($duration: .34s,$timingFunction: cubic-bezier(.645, .045, .355, 1));
+	}
+	.lightBoxOverlayOn{
+		z-index: 69;
+		opacity: 1;
+		@include translate($y: 0);
+	}
+	.OverlayOpacity{
+		opacity: 1;
+	}
+}

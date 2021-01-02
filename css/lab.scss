@@ -1,0 +1,155 @@
+@import 'initializ.scss';
+
+.lab{
+	& > ul{
+		padding-top: 38px;
+		opacity: 0;
+		@include translate($y: 10px);
+		@include transition();
+		@include respond('iphone'){
+			opacity: 1;
+			@include translate($y: 0);
+		}
+		& > li{
+			position: relative;
+			margin-bottom: 48px;
+			padding-top: 22.222222219%;
+			overflow: hidden;
+			@include respond('ipadL'){
+				padding-top: 27.7777774%;
+			}
+			@include respond('ipadP'){
+				padding-top: 33.333333333%;
+			}
+			@include respond('767px'){
+				padding-top: 0;
+			}
+			& > a{
+				color: #000;
+				.imgWrap{
+					position: absolute;
+					top: 0;
+					height: 100%;
+					@include respond('767px'){
+						position: relative;
+						float: none;
+						width: 100%;
+					}
+					.imgBox{
+						width: 100%;
+						height: 100%;
+						@include respond('767px'){
+							position: relative;
+							height: 0;
+							padding-top: 66.6666667%;
+						}
+						.img{
+							width: 100%;
+							height: 100%;
+							background-color: #ccc;
+							background: #ccc url('../src/img/MOTE.png') no-repeat center;
+							background-size: cover;
+							@include respond('767px'){
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 100%;
+								height: 100%;
+							}
+						}
+					}
+				}
+				.labInfoBox{
+					position: absolute;
+					right: 0;
+					top: 0;
+					height: 100%;
+					@include respond('767px'){
+						position: relative;
+						float: none;
+						height: auto;
+						width: 100%;
+					}
+					.labInfo{
+						position: relative;
+						width: 100%;
+						height: 100%;
+						@include respond('767px'){
+							text-align: center;
+						}
+						& > h1{
+							margin-bottom: 16px;
+							padding: 0;
+							font-size: 72px;
+							line-height: 60px;
+							vertical-align: top;
+							@include respond('ipadL'){
+								font-size: 64px;
+								margin-bottom: 12px;
+								line-height: 50px;
+							}
+							@include respond('ipadP'){
+								font-size: 48px;
+								margin: 12px 0;
+								line-height: 44px;
+							}
+							.innerOrder{
+								display: none;
+								@include respond('767px'){
+									display: inline-block;
+								}
+							}
+						}
+						.order{
+							@include respond('767px'){
+								display: none;
+							}
+						}
+						.labInfoTag{
+							position: absolute;
+							bottom: 0;
+							padding: 0 16px;
+							height: 64px;
+							font-size: 24px;
+							font-weight: bold;
+							line-height: 64px;
+							background-color: #E1E1E1;
+							@include respond('ipadL'){
+								height: 48px;
+								font-size: 18px;
+								line-height: 48px;
+								padding: 0 13px;
+							}
+							@include respond('767px'){
+								display: inline-block;
+								position: relative;
+								height: 32px;
+								font-size: 14px;
+								line-height: 32px;
+							}
+						}
+						& > p{
+							position: absolute;
+							top: 0;
+							right: 0;
+							font-size: 24px;
+							@include respond('ipadL'){
+								font-size: 18px;
+							}
+							@include respond('767px'){
+								position: relative;
+								margin-top: 12px;
+								font-size: 14px;
+								text-align: center;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.labShow{
+		opacity: 1;
+		@include translate($y: 0);
+	}
+}

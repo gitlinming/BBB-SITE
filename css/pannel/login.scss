@@ -1,0 +1,298 @@
+@import 'initializ.scss';
+
+*{
+	margin: 0;
+	padding: 0;
+	outline: none;
+	text-decoration: none;
+}
+
+html,
+body{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #f5f7fa;
+}
+
+.loginWrap{
+	$radius: 6px;
+	$loginBoxWidth: 360px;
+	$inputColor: #1e88e5;
+	$inputHover: #1565c0;
+	position: relative;
+	top: 15%;
+	margin: 0 auto;
+	width: 50%;
+	max-width: 672px;
+	height: 70%;
+	max-height: 650px;
+	min-height: 526px;
+	padding-left: $loginBoxWidth;
+	box-shadow: 0 30px 70px #ccc;
+	background-color: #fff;
+	border-radius: $radius;
+	overflow: hidden;
+	@include transition($property: height);
+	.loginBox{
+		$loginBoxWPadding: 60px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 0 $loginBoxWPadding;
+		width: $loginBoxWidth - $loginBoxWPadding*2;
+		height: 100%;
+		box-shadow: -2px 0 6px #999;
+		.loginLogo{
+			height: 35%;
+			.loading{
+				$size: 5.5vh;
+				position: relative;
+				margin: 0;
+				height: $size;
+				width: $size;
+				& > div{
+					position: absolute;
+					top: $loginBoxWPadding - 10px;
+					height: 100%;
+					width: 100%;
+					@include userSelect();
+					&:before{
+						@include icomoon($content: '\e904',$size: $size,$height: $size);
+					}
+				}
+				.bBlue{
+					left: 0;
+					@include transition-transform($duration: .8s, $timingFunction: cubic-bezier(.52,-0.59,.52,1.59));
+					&:before{
+						color: #114BAF;
+						opacity: .8;
+					}
+				}
+				.bRed{
+					right: 0;
+					@include translate($x: $size/4);
+					@include transition-transform($duration: .8s, $timingFunction: cubic-bezier(.52,-0.59,.52,1.59));
+					&:before{
+						color: #FA5A3C;
+						// opacity: .8;
+					}
+				}
+				.blueLeft{
+					@include translate($x: $size/4);
+					
+				}
+				.redRight{
+					@include translate($x: 0);
+				}
+			}
+		}
+		.login{
+			$width: 36px;
+			height: 65%;
+			& > div{
+				padding: 3px 0;
+				height: $width;
+				position: relative;
+				margin-bottom: 13px;
+				border-radius: 3px;
+				& > input{
+					// padding-left: 10px;
+					width: 100%;
+					height: 100%;
+					border: 0;
+					font-size: 16px;
+					color: $inputColor;
+					@include placeholder($size: 14px, $color: $inputColor);
+					&:focus{
+						@include placeholder($size: 0px, $color: #fff);
+					}
+				}
+			}
+			.inputBox{
+				padding-left: $width;
+				border-bottom: 1px solid $inputColor;
+				border-radius: 0px;
+			}
+			.userNameBox,
+			.passwordBox,
+			.emailBox{
+				&:before{
+					position: absolute;
+					left: 0px;
+					width: $width;
+					@include icomoon($content: "\e903", $size:14px, $height: $width, $color: $inputColor);
+					text-align: center;
+					// border-right: 1px solid $inputColor;
+				}
+			}
+			.passwordBox{
+				&:before{
+					content: '\e902';
+				}
+			}
+			.emailBox{
+				&:before{
+					content: '\e905';
+				}
+			}
+			.signInputBox,
+			.forgetInputBox{
+				display: none;
+			}
+			.submitBox,
+			.comfirmCreate,
+			.getPassword{
+				margin: 30px auto 0;
+				color: #fff;
+				// width: 120px;
+				text-align: center;
+				line-height: $width;
+				background-color: $inputColor;
+				cursor: pointer;
+				// box-shadow: 0 5px 20px #a1bdfd;
+				@include transition($property: background-color,$duration: .4s);
+				&:hover{
+					background-color: $inputHover;
+					// box-shadow: 0 5px 20px #a1bdfd;
+				}
+			}
+			.createAdmin,
+			.cancel{
+				// box-sizing: border-box;
+				margin: 12px auto 0;
+				color: $inputColor;
+				height: $width - 2px;
+				line-height: $width - 2px;
+				text-align: center;
+				border: 1px solid $inputColor;
+				cursor: pointer;
+				@include transition();
+				&:hover{
+					color: $inputHover;
+					border-color: $inputHover;
+				}
+			}
+			.comfirmCreate{
+				margin-top: 30px;
+				color: #fff;
+				background-color: $inputColor;
+				border: 0;
+				line-height: 34px;
+				&:hover{
+					color: #fff;
+					border-color: $inputHover;
+				}
+			}
+			.cancel,
+			.getPassword{
+				display: none;
+			}
+			.forgetPas{
+				margin-top: 24px;
+				font-size: 13px;
+				color: $inputColor;
+				cursor: pointer;
+				text-align: center;
+				&:hover{
+					color: darken($inputHover,14%);
+				}
+			}
+		}
+		.power{
+			position: absolute;
+			width: 100%;
+			left: 0;
+			bottom: $loginBoxWPadding - 30px;
+			font-size: 12px;
+			color: #bfd6ea;
+			text-align: center;
+			cursor: default;
+		}
+	}
+	.loginImg{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		background-color: #000;
+		// background-image: url(../src/img/DaveWhyte.gif);
+		// background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		border-radius: 0 $radius $radius 0;
+		color: #fff;
+		text-align: center;
+		// text-transform: capitalize;
+		user-select: none;
+		cursor: default;
+		&:before {
+			content: "";
+			display: inline-block;
+			height: 100%;
+			vertical-align: middle;
+			font-size: 0;
+		}
+		// & > p{
+		// 	// position: absolute;
+		// 	// bottom: 20px;
+		// 	// width: 100%;
+		// 	// height: 100%;
+		// 	color: #fff;
+		// }
+	}
+}
+.creatingAdmin{
+	min-height: 650px;
+	.loginBox{
+		.loginLogo{
+			height: 28%;
+			// .loading{
+
+			// }
+		}
+		.login{
+			height: 72%;
+			.loginInputBox,
+			.submitBox,
+			.forgetPas{
+				display: none;
+			}
+			.signInputBox,
+			.cancel{
+				display: block;
+			}
+		}
+	}
+}
+
+.forgetPasWrap{
+	.loginBox{
+		.login{
+			height: 72%;
+			.loginInputBox,
+			.submitBox,
+			.forgetPas,
+			.createAdmin{
+				display: none;
+			}
+			.forgetInputBox,
+			.cancel,
+			.getPassword{
+				display: block;
+			}
+		}
+	}
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+
+
+
+
+
+

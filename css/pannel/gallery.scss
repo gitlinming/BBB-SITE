@@ -1,0 +1,499 @@
+@import 'initializ.scss';
+
+html,
+body,
+#pannel{
+	height: 100%;
+}
+
+.galleryWrap{
+	position: relative;
+	// margin-top: 70px;
+	height: 100%;
+	.galleryHead{
+		$height: 46px;
+		z-index: 10;
+		position: fixed;
+		top: 70px;
+		padding: 12px 0;
+		width: 100%;
+		height: $height;
+		background-color: #273142;
+		border-bottom: 1px solid #313D4F;
+		& > ul,
+		& > div{
+			height: $height;
+		}
+		& > ul{
+			float: left;
+			margin-left: $pannelPadding;
+			& > li{
+				float: left;
+				margin-top: 15px;
+				padding-right: 10px;
+				// display: inline-block;
+				height: $height - 30px;
+				color: #7787a2;
+				line-height: $height - 30px;
+				cursor: pointer;
+				&:first-child{
+					margin-right: 10px;
+					border-right: 1px solid #fff;
+				}
+				&:hover{
+					color: #fff;
+				}
+			}
+			.galleryHeadActive{
+				color: #fff;
+			}
+		}
+		.uploadButton{
+			position: absolute;
+			right: 30px;
+			top: 12px;
+			margin-top: 8px;
+			height: 30px;
+			width: 108px;
+			color: #fff;
+			line-height: 30px;
+			font-size: 14px;
+			text-align: left;
+			background-color: #4caf50;
+			border-radius: 5px;
+			cursor: pointer;
+			@include transition($property:background-color);
+			&:before{
+				float: left;
+				margin-left: 14px;
+				margin-right: 6px;
+				@include icomoon($content: "\e2c3", $size:16px, $height: 30px, $color: #fff);
+			}
+			&:hover{
+				background-color: #388e3c;
+			}
+			& > input{
+				z-index: 10;
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				filter:alpha(opacity=0); /* ie8 less */
+				cursor: pointer;
+			}
+		}
+		.uploading{
+			&:hover{
+				background-color: #4caf50;
+			}			
+		}
+		.searchBox{
+			$width: $height - 12px;
+			height: $width;
+		}
+	}
+	.galleryBox{
+		position: relative;
+		box-sizing: border-box;
+		padding-top: 70px;
+		padding-left: 0;
+		height: auto;
+		min-height: 100%;
+		background-color: #1B2431;
+		.imgDetailBox{
+			position: fixed;
+			left: 0;
+			top: 140px;
+			width: 22%;
+			height: 100%;
+			background-color: #273142;
+			overflow: scroll;
+			@include transition-transform();
+			@include translate($x: -100%);
+			@include respond('destop'){
+				width: 30%;
+			}
+			@include respond('ipadP'){
+				width: 50%;
+			}
+			@include respond('iphoneP'){
+				display: none;
+			}
+			.imgDetail{
+				position: absolute;
+				box-sizing: border-box;
+				padding: $pannelPadding;
+				padding-bottom: 160px;
+				width: 100%;
+				background-color: #273142;
+				border-top: 1px solid #313D4F;
+				.imgDetailTitle{
+					clear: both;
+					margin-bottom: 15px;
+					color: #7F8FA4;
+				}
+				.imgDetailImageBox{
+					position: relative;
+					font-size: 0;
+					.imgDetailImage{
+						width: 100%;
+						border-radius: 4px;
+					}
+					& > a{
+						position: absolute;
+						top: 0;
+						display: block;
+						width: 100%;
+						height: 100%;
+						cursor: zoom-in;
+					}		
+				}
+
+				.imgDetailCaption{
+					margin: 16px auto;
+					height: auto;
+					min-height: 22px;
+					line-height: 22px;
+					color: #fff;
+					font-size: 16px;
+					word-wrap: break-word;
+					border-radius: 4px;
+					outline: none;
+					@include transition();
+					&[placeholder]:empty:before {
+						// margin-left: -10px;
+					    content: attr(placeholder);
+					    color: #97a2b5; 
+					}
+					&[placeholder]:focus:before{
+					    content:none;
+
+					}
+				}
+				.imgDetailCaptionActive{
+					border-sizing: border-box;
+					padding: 10px;
+					background-color: #4c586d;
+					color: #f4f8ff;
+					// border: 1px solid #fff;
+					&:focus{
+						// border: 1px solid #fff;
+						// box-shadow: none;					
+					}
+				}
+				.captionEditBox{
+					margin-bottom: 40px;
+					height: 0;
+					overflow: hidden;
+					& > li{
+						// display: none;
+						float: right;
+						padding: 0 20px;
+						height: 100%;
+						font-size: 14px;
+						line-height: 32px;
+						background-color: #1B2431;
+						border-radius: 4px;
+						cursor: pointer;
+						letter-spacing: .5px;
+					}
+					.captionEdit{
+						display: inline-block;
+						float: left;
+						background-color: #2196f3;
+						&:before{
+							margin-right: 5px;
+							vertical-align: top;
+							@include icomoon($content: '\e252',$height: 34px,$size: 12px,$color: #fff);
+						}
+					}
+					.captionEditCancel{
+						margin-left: 10px;
+						background-color: #555;
+					}
+					.captionEditConfirm{
+						background-color: #4caf50;
+					}
+					.listButtonHide{
+						height: 0;
+						margin: 0;
+						overflow: hidden;
+					}
+				}
+				.captionEditBoxActive{
+					margin-bottom: 40px;
+					height: 32px;
+					@include transition($property: height);
+				}
+				& > ul{
+					& > li{
+						color: #fff;
+						margin-bottom: 5px;
+					}
+				}
+				.imgDetailInfo{
+					margin-bottom: 20px;
+					& > li{
+						&:before{
+							margin-right: 10px;
+							vertical-align: top;
+							@include icomoon($content: '\e000',$height: 22px,$color: #fff,$size: 18px);
+						}
+					}
+					.detailResolution{
+						&:before{
+							content: '\e3c2';
+						}
+					}
+					.detailFileSize{
+						&:before{
+							content: '\e53b';
+						}
+					}
+					.detailCreatedTime{
+						&:before{
+							content: '\e8b5';
+						}
+					}
+					.detailAuthorName{
+						&:before{
+							content: '\e853';
+						}
+					}
+				}
+				.imgDetailRefer{
+					overflow: hidden;
+					& > li{
+						position: relative;
+						display: inline-block;
+						float: left;
+						margin: 0;
+						padding-top: 14.2857%;
+						width: 14.2857%;
+						color: #7f8fa4;
+						font-size: 0;
+						font-weight: bold;
+						text-align: center;
+						cursor: pointer;
+						
+						& > a{
+							position: absolute;
+							top: 0;
+							display: block;
+							margin: 0 10% 10%;
+							width: 80%;
+							height: 80%;
+							color: #fff;
+							font-size: 12px;
+							// line-height: 28px;
+							background-color: #7f8fa4;
+							border-radius: 50%;
+							@include transition($property: background-color);
+							&:before {
+							  content: "";
+							  margin-top: 2px;
+							  display: inline-block;
+							  height: 100%;
+							  vertical-align: middle;
+							}
+						}
+						&:hover a{
+							background-color: #4c586d;
+						}
+					}
+				}
+				.deleteImg{
+					margin-top: 50px;
+					height: 44px;
+					color: #fff;
+					line-height: 44px;
+					background-color: #f96d6d;
+					text-align: center;
+					border-radius: 2px;
+					@include transition($property: background-color,$duration: .4s);
+					cursor: pointer;
+					&:before{
+						margin-right: 5px;
+						vertical-align: top;
+						@include icomoon($content: '\e92b',$height: 44px,$color: #fff,$size: 19px);
+					}
+					&:hover{
+						background-color: #f44336;
+					}
+				}
+			}			
+		}
+		.gallery{
+			box-sizing: border-box;
+			height: auto;
+			min-height: 100%;
+			width: 100%;
+			padding: 100px 30px 0;
+			padding-left: 0;
+			overflow: hidden;
+			.galleryLoaidngBox{
+				$h: 20px + 8px + 8px;
+				clear: both;
+				padding-bottom: 30px;
+				padding-left: 30px;
+				text-align: center;
+				.loading{
+					display: none;
+					padding: $h/2 - 14px/2 0;
+					$width: 14px;
+					height: $width;
+					& > li{
+						width: $width;
+						height: $width;
+					}
+				}
+				.galleryLoadMore{
+					height: $h;
+				}
+			}
+			.galleryLoaidngShow{
+				.loading{
+					display: inline-block;
+				}
+				.galleryLoadMore{
+					display: none;
+				}
+			}
+			.searchContentBox{
+				display: none;
+				$height: 44px;
+				margin-bottom: 30px;
+				width: 100%;
+				height: $height;
+				text-align: center;
+				.searchContent{
+					// display: inline-block;
+					display: inline-block;
+					margin: 0 auto;
+					padding: 0 10px;
+					width: auto;
+					height: $height;
+					font-size: 18px;
+					color: #fff;
+					line-height: $height;
+					background-color: #273142;
+					cursor: pointer;
+					@include transition($property: background-color);
+					&:after{
+						margin-left: 10px;
+						@include icomoon($content: '\e117',$size: 16px,$height: $height, $color: #fff);
+					}
+					&:hover{
+						background-color: #63738e;
+					}
+				}
+			}
+			& > li{
+				float: left;
+				display: inline-block;
+				position: relative;
+				box-sizing: border-box;
+				margin-bottom: 30px;
+				padding-left: 30px;
+				width: 20%;
+				height: auto;
+				@include respond('destopHD'){
+					width: 25%
+				}
+				@include respond('destop'){
+					width: 33.33%
+				}
+				@include respond('ipadL'){
+					width: 50%
+				}
+				@include respond('ipadP'){
+					width: 100%
+				}
+				.imgWrap{
+					position: relative;
+					padding-top: 100%;
+					width: 100%;
+					background-color: #273142;
+					border-radius: 4px;
+					cursor: pointer;
+					@include transition($property: background-color);
+					&:hover{
+						background-color: #4c586d;
+					}
+					.imgBox{
+						$listInfoHeight: 40px;
+						position: absolute;
+						top: 0;
+						left: 0;
+						box-sizing: border-box;
+						padding: 10px 10px $listInfoHeight;
+						width: 100%;
+						height: 100%;
+						&:before{
+							z-index: 0;
+							position: absolute;
+							top: 50%;
+							left: 0;
+							margin-top: -30px - 15px;
+							width: 100%;
+							text-align: center;
+							@include icomoon($content: "\e90a", $size:60px, $height: 60px, $color: #5f6c84);
+						}
+						.img{
+							z-index: 1;
+							position: relative;
+							height: 100%;
+							width: 100%;
+							// background-color: #5f6c84;
+							overflow: hidden;
+							background-repeat: no-repeat;
+							background-position: center;
+							background-size: cover;
+							& > img{
+								width: 100%;
+								display: none;
+							}
+							& > a{
+								display: block;
+								width: 100%;
+								height: 100%;
+								cursor: pointer;
+							}
+						}
+						.imgListInfo{
+							position: absolute;
+							left: 0;
+							bottom: 0;
+							box-sizing: border-box;
+							padding-left: 13px;
+							height: $listInfoHeight;
+							width: 100%;
+							color: #fff;
+							font-size: 16px;
+							line-height: $listInfoHeight;
+							text-overflow: ellipsis;
+							overflow: hidden;
+						}
+					}				
+				}
+			}
+		}
+	}
+	.galleryBoxDetail{
+		padding-left: 22%;
+		@include respond('destop'){
+			padding-left: 30%;
+		}
+		@include respond('ipadP'){
+			padding-left: 50%;
+		}
+		@include respond('iphoneP'){
+			padding-left: 0;
+		}
+		.imgDetailBox{
+			@include translate($x:0);
+		}
+	}
+}

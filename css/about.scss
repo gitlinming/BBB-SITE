@@ -1,0 +1,408 @@
+@import 'initializ.scss';
+
+.about{
+	.sevicesBox{
+		position: relative;
+		margin-top: 72px;
+		padding-top: 30px;
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+		& > div{
+			float: left;
+			display: inline-block;
+			position: relative;
+			padding-bottom: 15.914%;
+			margin-right: 2%;
+			width: 23.5%;
+			height: 100%;
+			background-color: #eee;
+			@include respond('ipadL'){
+				padding-bottom: 32.666%;
+			}
+			@include respond('iphoneP'){
+				padding-bottom: 66.666%;
+			}
+			@include respond('ipadL'){
+				margin-bottom: 60px;
+				margin-right: 0;
+				width: 49%;
+			}
+			@include respond('iphoneP'){
+				width: 100%;
+			}
+			&:nth-child(2n){
+				@include respond('ipadL'){
+					margin-left: 2%;
+				}
+				@include respond('iphoneP'){
+					margin-left: 0;
+				}
+			}
+			& > div{
+				position: absolute;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				&:before{
+					position: absolute;
+					top: -38px;
+					content: attr(class);
+					font-size: 18px;
+					font-weight: bold;
+					line-height: 30px;
+					// text-transform: uppercase;
+				}
+			}
+		}
+		.designBox{
+			background-color: #144BAF;
+			.design{
+				&:hover .meeting .meeting1{
+					@include animation($name: meeting1, $duration: .8s, $timingFunction: ease-in);
+				}
+				@keyframes meeting1 {
+					80% {
+						@include translate($x: -5px);
+					}
+				}
+				&:hover .meeting .meeting2{
+					@include animation($name: meeting2, $duration: .8s, $timingFunction: ease-in);
+				}
+				@keyframes meeting2 {
+					90% {
+						@include translate($x: 5px);
+					}
+				}
+				.meeting{
+					position: relative;
+					margin: 23% auto 0;
+					width: 48%;
+					padding-bottom: 24%;
+					& > li{
+						box-sizing: border-box;
+						position: absolute;
+						height: 100%;
+						width: 50%;
+						border: 2px solid #fff;
+						border-radius: 50%;
+						&:first-child{
+							left: 1px;
+						}
+						&:last-child{
+							right: 1px;
+						}
+					}
+				}
+			}
+		}
+		.strategyBox{
+			background-color: #FABED7;
+			.strategy{
+				height: 100%;
+				&:hover .survey > li{
+					@include translate($x: -101%);
+				}
+				&:hover .survey > .survey1{
+					@include animation($name: survey1, $duration: 1s, $timingFunction: ease-in);
+				}
+				@keyframes survey1 {
+					50%{
+						@include translate($x: 100%);
+					}
+				}
+				&:hover .survey > .survey2{
+					@include animation($name: survey2, $duration: 1s, $timingFunction: ease-in, $delay: .5s);
+				}
+				@keyframes survey2 {
+					50%{
+						@include translate($x: 100%);
+					}
+				}
+				&:hover .survey > .survey3{
+					@include animation($name: survey3, $duration: 1s, $timingFunction: ease-in, $delay: 1s);
+				}
+				@keyframes survey3 {
+					50%{
+						@include translate($x: 100%);
+					}
+				}
+				&:hover .survey > .survey4{
+					@include animation($name: survey4, $duration: 1s, $timingFunction: ease-in, $delay: 1.5s);
+				}
+				@keyframes survey4 {
+					50%{
+						@include translate($x: 100%);
+					}
+				}
+				&:hover .survey > .survey5{
+					@include animation($name: survey5, $duration: 1s, $timingFunction: ease-in, $delay: 2s);
+				}
+				@keyframes survey5 {
+					50%{
+						@include translate($x: 100%);
+					}
+				}
+				.survey{
+					position: relative;
+					top: 30%;
+					margin: 0 auto;
+					width: 42.704%;
+					height: 40%;
+					overflow: hidden;
+					& > li{
+						box-sizing: border-box;
+						height: 24%;
+						width: 100%;
+						border-top: 2px solid #fff;
+						@include transition-transform();
+						&:first-child{
+							width: 56%;
+						}
+						&:last-child{
+							border-bottom: 2px solid #fff;
+						}
+					}
+				}
+			}
+		}
+		.developmentBox{
+			background-color: #FA5A3C;
+			.development{
+				.hardWork{
+					position: relative;
+					margin: 23% auto 0;
+					width: 24%;
+					padding-bottom: 24%;
+					& > li{
+						box-sizing: border-box;
+						position: absolute;
+						height: 100%;
+						width: 100%;
+						border: 2px solid #fff;
+						&:last-child{
+							@include rotate($deg: 45deg);
+						}
+					}
+				}
+				$percent: 6.25%;
+				$degree: 22.5deg;
+				&:hover .hardWork .hardWork1{
+					@include animation($name: hardWork1, $duration: 14s, $timingFunction: cubic-bezier(1,0,1,.8));
+				}
+				@keyframes hardWork1 {
+					6.25%{
+						@include rotate($deg: 45deg - $degree);
+					}
+					12.5%{
+						@include rotate($deg: 45deg - $degree*2);
+					}
+					18.75%{
+						@include rotate($deg: 45deg - $degree*3);
+					}
+					25%{
+						@include rotate($deg: 45deg - $degree*4);
+					}
+					31.25%{
+						@include rotate($deg: 45deg - $degree*5);
+					}
+					37.5%{
+						@include rotate($deg: 45deg - $degree*6);
+					}
+					43.75%{
+						@include rotate($deg: 45deg - $degree*7);
+					}
+					50%{
+						@include rotate($deg: 45deg - $degree*8);
+					}
+					56.25%{
+						@include rotate($deg: 45deg - $degree*9);
+					}
+					62.5%{
+						@include rotate($deg: 45deg - $degree*10);
+					}
+					68.75%{
+						@include rotate($deg: 45deg - $degree*11);
+					}
+					75%{
+						@include rotate($deg: 45deg - $degree*12);
+					}
+					81.25%{
+						@include rotate($deg: 45deg - $degree*13);
+					}
+					87.5%{
+						@include rotate($deg: 45deg - $degree*14);
+					}
+					93.75%{
+						@include rotate($deg: 45deg - $degree*15);
+					}
+					100%{
+						@include rotate($deg: 45deg - $degree*16);
+					}
+				}
+				&:hover .hardWork .hardWork2{
+					@include animation($name: hardWork2, $duration: 14s, $timingFunction: cubic-bezier(1,0,1,.8));
+					// animation: hardWork2 14s infinite cubic-bezier(1,0,1,.8);
+				}
+				@keyframes hardWork2 {
+					6.25%{
+						@include rotate($deg: $degree);
+					}
+					12.5%{
+						@include rotate($deg: $degree*2);
+					}
+					18.75%{
+						@include rotate($deg: $degree*3);
+					}
+					25%{
+						@include rotate($deg: $degree*4);
+					}
+					31.25%{
+						@include rotate($deg: $degree*5);
+					}
+					37.5%{
+						@include rotate($deg: $degree*6);
+					}
+					43.75%{
+						@include rotate($deg: $degree*7);
+					}
+					50%{
+						@include rotate($deg: $degree*8);
+					}
+					56.25%{
+						@include rotate($deg: $degree*9);
+					}
+					62.5%{
+						@include rotate($deg: $degree*10);
+					}
+					68.75%{
+						@include rotate($deg: $degree*11);
+					}
+					75%{
+						@include rotate($deg: $degree*12);
+					}
+					81.25%{
+						@include rotate($deg: $degree*13);
+					}
+					87.5%{
+						@include rotate($deg: $degree*14);
+					}
+					93.75%{
+						@include rotate($deg: $degree*15);
+					}
+					100%{
+						@include rotate($deg: $degree*16);
+					}
+				}
+			}
+		}
+		.creativeBox{
+			margin-right: 0;
+			background-color: #000;
+			.creative{
+				&:hover .delivery{
+					@include animation($name: delivery, $duration: 4s, $timingFunction: ease);
+					// animation: delivery 4s infinite linear;
+				}
+				@keyframes delivery {
+			      from {
+			      	-webkit-transform: rotateX(-35deg) rotateY(45deg);
+			      	   -moz-transform: rotateX(-35deg) rotateY(45deg);
+			      			transform: rotateX(-35deg) rotateY(45deg);
+			      }
+			      to {
+			      	-webkit-transform: rotateX(325deg) rotateY(405deg);
+			      	   -moz-transform: rotateX(325deg) rotateY(405deg);
+			      			transform: rotateX(325deg) rotateY(405deg);
+			      }
+				}
+				.delivery{
+					position: relative;
+					margin: 25% auto 0;
+					width: 18%;
+					padding-bottom: 18%;
+					-webkit-transform-style:preserve-3d;
+					   -moz-transform-style:preserve-3d;
+							transform-style:preserve-3d;
+					-webkit-transform: rotateX(-35deg) rotateY(45deg);
+					   -moz-transform: rotateX(-35deg) rotateY(45deg);
+							transform: rotateX(-35deg) rotateY(45deg);
+					@include transition();
+					& > li{
+						position: absolute;
+						height: 100%;
+						width: 100%;
+						background-color: #fff;
+					}
+					$z: 20px;
+					.box1{
+						display: block;
+						background-color: #b1b1b1;
+						-webkit-transform: rotateY(-90deg) translateX(50%) rotateY(90deg);
+						   -moz-transform: rotateY(-90deg) translateX(50%) rotateY(90deg);
+								transform: rotateY(-90deg) translateX(50%) rotateY(90deg);
+					}
+					.box2{
+						background-color: #7B7B7B;
+						-webkit-transform: rotateY(90deg) rotateY(-90deg) translateX(50%) rotateY(90deg);
+						   -moz-transform: rotateY(90deg) rotateY(-90deg) translateX(50%) rotateY(90deg);
+								transform: rotateY(90deg) rotateY(-90deg) translateX(50%) rotateY(90deg);
+					}
+					.box3{
+						background-color: #c6c6c6;
+						-webkit-transform: rotateX(90deg) rotateY(-90deg) translateX(50%) rotateY(90deg);
+						   -moz-transform: rotateX(90deg) rotateY(-90deg) translateX(50%) rotateY(90deg);
+								transform: rotateX(90deg) rotateY(-90deg) translateX(50%) rotateY(90deg);
+					}
+					.box4{
+						background-color: #c6c6c6;
+						-webkit-transform: rotateX(90deg) rotateY(-90deg) translateX(-50%) rotateY(90deg);						
+						   -moz-transform: rotateX(90deg) rotateY(-90deg) translateX(-50%) rotateY(90deg);						
+								transform: rotateX(90deg) rotateY(-90deg) translateX(-50%) rotateY(90deg);						
+					}
+					.box5{
+						background-color: #7B7B7B;
+						-webkit-transform: rotateY(90deg) rotateY(-90deg) translateX(-51%) rotateY(90deg);
+						   -moz-transform: rotateY(90deg) rotateY(-90deg) translateX(-51%) rotateY(90deg);
+								transform: rotateY(90deg) rotateY(-90deg) translateX(-51%) rotateY(90deg);
+					}
+					.box6{
+						background-color: #b1b1b1;
+						-webkit-transform: rotateY(-90deg) translateX(-50%) rotateY(90deg);
+						   -moz-transform: rotateY(-90deg) translateX(-50%) rotateY(90deg);
+								transform: rotateY(-90deg) translateX(-50%) rotateY(90deg);
+					}
+				}
+			}
+		}
+	}
+	.estBox{
+		display: inline-block;
+		margin-top: 48px;
+		width: auto;
+		cursor: default;
+		& > p{
+			font-weight: bold;
+		}
+		.date{
+			font-size: 36px;
+		}
+	}
+	.aboutFooter{
+		position: relative;
+		margin: 48px 0;
+		& > li,
+		& > ol > li{
+			font-weight: 400;
+			font-size: 14px;
+			color: #999;
+		}
+		& > ol > li{
+			display: inline-block;
+			margin-right: 15px;
+		}
+		& > li{
+			text-decoration: underline;
+		}
+	}
+}

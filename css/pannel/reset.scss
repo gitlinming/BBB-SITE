@@ -1,0 +1,165 @@
+@import 'initializ.scss';
+
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	outline: none;
+	border: none;
+}
+
+html,
+body{
+	width: 100%;
+	height: 100%;
+}
+
+body{
+	background: #eee url(../../src/img/reset/04.jpg) no-repeat right center;
+	background-size: cover;
+}
+
+.verifyWrap{
+	$width: 300px;
+	$height: 46px;
+	// $top: $height + $height + $height + 15px + 10px;
+	position: relative;
+	top: 50%;
+	margin: 0 auto;
+	margin-top: -112px;
+	width: $width;
+	height: auto;
+	.verifyBox{
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+		.verify{
+			width: 100%;
+			// height: $height + 10px;
+			overflow: hidden;
+			@include transition();
+			& > li{
+				width: 100%;
+				float: left;
+				display: inline-block;
+				& > input{
+					$padding: 10px;
+					margin-top: 10px;
+					padding: 14px $padding;
+					width: $width - $padding - $padding;
+					font-size: 16px;
+					border-radius: 2px;
+					@include placeholder($size: 16px, $color: #aaa);
+				}
+			}
+		}
+		& > p{
+			font-size: 30px;
+			height: $height;
+			color: #fff;
+			line-height: $height + 6px;
+			font-weight: bold;
+			// text-shadow: 0 0 10px #6d6d6d;
+		}
+	}
+	$hoverColor: #039be5;
+	.actionBox{
+		position: relative;
+		margin-top: 20px;
+		color: #fff;
+		line-height: $height;
+		text-align: center;
+		height: $height;
+		background-color: #29b6f6;
+		cursor: pointer;
+		border-radius: 2px;
+		overflow: hidden;
+		@include transition($property: background-color);
+		&:hover{
+			background-color: $hoverColor;
+		}
+		.action{
+			width: 200%;
+			height: 100%;
+			@include transition-transform();
+			& > li{
+				float: left;
+				width: 50%;
+				height: 100%;
+			}
+			.updated{
+				background-color: #4caf50;
+			}
+		}
+		.actionUpdated{
+			@include translate($x: -50%);
+		}
+		.profileLoading{
+			$width: 9px;
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 19px 131px;
+			padding-left: 132px;
+			height: $height - 36px;
+			background-color: $hoverColor;
+			border-radius: 2px;
+			& > li{
+				float: left;
+				width: $width;
+				height: $width;
+				background-color: #fff;
+				border-radius: 50%;
+			}
+			.loadBall1{
+				animation: loadBall .7s infinite ease;
+			}
+			.loadBall2{
+				margin: 0 5px;
+				animation: loadBall .7s infinite ease .1s;
+			}
+			.loadBall3{
+				animation: loadBall .7s infinite ease .2s;
+			}
+			@keyframes loadBall {
+				50%{
+					opacity: .5;
+					-webkit-transform: scale(.7);
+					   -moz-transform: scale(.7);
+						-ms-transform: scale(.7);
+						 -o-transform: scale(.7);
+							transform: scale(.7);
+				}
+			}
+		}
+	}
+	.alert{
+		display: none;
+		position: relative;
+		margin-top: 10px;
+		padding: 10px 0;
+		color: #fff;
+		background-color: #ccc;
+		text-align: center;
+		background-color: #ef5350;
+		border-radius: 2px;
+		cursor: default;
+		&:before{
+			position: absolute;
+			left: 12px;
+			top: 12px;
+			// float: left;
+			// display: block;
+			// margin-left: 20px;
+			width: 16px;
+			height: 16px;
+			content: '!';
+			font-size: 14px;
+			border: 1px solid #fff;
+			border-radius: 50%;
+			line-height: 16px;
+		}
+	}
+}

@@ -1,0 +1,187 @@
+$blue: #0541A5;
+
+@mixin font($size: 16px, $weight: bold, $color: #000){
+	font-size: $size;
+	font-weight: $weight;
+	font-family: 'Roboto Mono', monospace, "pingfang SC", "Hiragino Sans GB", "Microsoft YaHei", tahoma, arial, simsun;
+	color: $color;
+}
+
+@mixin placeholder($size: 14px, $color: #ccc){
+  &::-webkit-input-placeholder{
+    font-size: $size;
+    color: $color;
+  }
+  &:-moz-placeholder{
+    font-size: $size;
+    color: $color;
+  }
+  &::-moz-placeholder{
+    font-size: $size;
+    color: $color;
+  }
+  &:-ms-input-placeholder{
+    font-size: $size;
+    color: $color;
+  }
+}
+
+@mixin icomoon($content: "\e900", $size:16px, $height: 60px, $color: #fff){
+	content: $content;
+	font: $size 'icomoon';
+	line-height: $height;
+	color: $color;
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin animation($name:unkown, $duration: .2s, $count: infinite, $timingFunction: ease, $delay: 0s){
+  -webkit-animation: $name $duration $count $timingFunction $delay;
+     -moz-animation: $name $duration $count $timingFunction $delay;
+       -o-animation: $name $duration $count $timingFunction $delay;
+          animation: $name $duration $count $timingFunction $delay;
+}
+
+@mixin transition($property: all, $duration: .2s, $timingFunction: ease, $delay: 0s){
+  -webkit-transition: $property $duration $timingFunction $delay;
+     -moz-transition: $property $duration $timingFunction $delay;
+       -o-transition: $property $duration $timingFunction $delay;
+          transition: $property $duration $timingFunction $delay;
+  @if $property != all {
+    will-change: $property; //using gpu
+  }
+}
+
+@mixin transition-transform($duration: .2s, $timingFunction: ease, $delay: 0s){
+  -webkit-transition: -webkit-transform $duration $timingFunction $delay;
+     -moz-transition:    -moz-transform $duration $timingFunction $delay;
+       -o-transition: 	   -o-transform $duration $timingFunction $delay;
+          transition:         transform $duration $timingFunction $delay;
+  		  will-change: transform; //using gpu
+}
+
+@mixin translate($x: 0, $y: 0){
+-webkit-transform: translate($x,$y);
+   -moz-transform: translate($x,$y);
+	  -ms-transform: translate($x,$y);
+	   -o-transform: translate($x,$y);
+		    transform: translate($x,$y);
+}
+
+@mixin rotate($deg: 0deg){
+-webkit-transform: rotate($deg);
+   -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+     -o-transform: rotate($deg);
+        transform: rotate($deg);  
+}
+
+@mixin scale($x: 0, $y: 0){
+-webkit-transform: scale($x,$y);
+   -moz-transform: scale($x,$y);
+    -ms-transform: scale($x,$y);
+     -o-transform: scale($x,$y);
+        transform: scale($x,$y);
+}
+
+@mixin transform($tx: 0, $ty: 0, $sx: 0, $sy: 0, $deg: 0deg, $xdeg: 0deg, $ydeg: 0deg){
+-webkit-transform: translate($tx,$ty) scale($sx,$sy) rotate($deg) skew($xdeg,$ydeg);
+   -moz-transform: translate($tx,$ty) scale($sx,$sy) rotate($deg) skew($xdeg,$ydeg);
+    -ms-transform: translate($tx,$ty) scale($sx,$sy) rotate($deg) skew($xdeg,$ydeg);
+     -o-transform: translate($tx,$ty) scale($sx,$sy) rotate($deg) skew($xdeg,$ydeg);
+        transform: translate($tx,$ty) scale($sx,$sy) rotate($deg) skew($xdeg,$ydeg);
+}
+
+@mixin userSelect(){
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+		-ms-user-select: none;
+		    user-select: none;
+}
+
+@mixin background($angle: right,$webkit: left, $color1: red, $stop1: 0, $color2: blue, $stop2: 100%){
+  background: -webkit-linear-gradient($webkit, $color1 $stop1, $color2 $stop2);
+  background: -o-linear-gradient($angle, $color1 $stop1, $color2 $stop2);
+  background: -moz-linear-gradient($angle, $color1 $stop1, $color2 $stop2);
+  background: linear-gradient(to $angle, $color1 $stop1, $color2 $stop2);
+}
+
+$destopHD: 1620px;
+$destop: 1440px - 1px;
+$ipadL: 1024px;
+$ipadP: 768px;
+$iphoneP: 414px;
+$iphone: 375px;
+$iphone5: 320px;
+
+$bodyPadding: 300px;
+
+$pannelPadding: 30px;
+
+$breakpoints: (
+  'iphone5': (max-width: $iphone5),
+  'iphone': (max-width: $iphone),
+  'iphoneP': (max-width: $iphoneP),
+  '767px': (max-width: 767px),
+  'ipadP': (max-width: $ipadP),
+  'ipadL': (max-width: $ipadL),
+  '1440px': (max-width: 1440px),  
+  'destop': (max-width: $destop),
+  'destopHD': (max-width: $destopHD),
+);
+
+/// Responsive breakpoint manager
+/// @access public
+/// @param {String} $breakpoint - Breakpoint
+/// @requires $breakpoints
+@mixin respond($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == 'string',
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+@mixin responsive(){
+  padding: 0 150px;
+  max-width: $destopHD;
+  @include respond('destop'){
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+  @include respond('iphoneP'){
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@mixin destopHD(){
+  margin: 0 auto;
+  width: 100%;
+  max-width: $destopHD;
+}
+
+@mixin destop(){
+  margin: 0 auto;
+  width: 100%;
+  max-width: $destop;
+}
+
+@mixin ipadL(){
+  margin: 0 auto;
+  width: 100%;
+  max-width: $ipadL;
+}
+
+

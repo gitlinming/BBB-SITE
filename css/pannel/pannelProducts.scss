@@ -1,0 +1,233 @@
+@import 'initializ.scss';
+
+.productsWrap{
+	$left: 30px;
+	margin: 72px auto;
+	padding: 40px 20px;
+	max-width: 1440px;
+	background-color: #EFF3F6;
+	outline: none;
+	.productsBox{
+		border: 1px solid #e0e1e2;
+		& > ul{
+			width: 100%;
+			background-color: #fff;
+		}
+		.productsNav{
+			$height: 34px;
+			position: relative;
+			padding: 23px 0;
+			height: $height;
+			& > li{
+				height: $height;
+				line-height: $height;
+				cursor: default;
+				&:first-child{
+					margin-left: $left;
+					font-size: 22px;
+					font-weight: bold;
+					color: #354052;
+				}
+			}
+			.productsTitle{
+				float: left;
+			}
+			.productsAdd{
+				position: absolute;
+				top: 23px;
+				right: $left;
+				height: $height;
+				width: 110px;
+				font-size: 14px;
+				
+				text-align: center;
+				border-radius: 5px;
+    			cursor: pointer;
+    			background-color: #4caf50;
+    			@include transition($property: background-color);
+    			& > a{
+    				display: block;
+    				width: 100%;
+    				height: 100%;
+    				color: #fff;
+					&:before{
+						margin-right: 5px;
+						vertical-align: top;
+						@include icomoon($content: "\e909", $size:13px, $height: $height+1px, $color: #fff);
+					}    				
+    			}
+
+    			&:hover{
+    				background-color: #388e3c;
+    			}
+			}
+			.searchBox{
+				margin-top: 0;
+				margin-bottom: 0;
+				background-color: #fff;
+				border: 1px solid #e0e1e2;
+				@include transition($property: border-color);
+				& > input{
+					background-color: #fff;
+					color: #444;
+					&::-webkit-input-placeholder{
+						color: #b4bbc3;;
+					}
+					&:-moz-placeholder{
+						color: #b4bbc3;;
+					}
+					&::-moz-placeholder{
+						color: #b4bbc3;;
+					}
+					&:-ms-input-placeholder{
+						color: #b4bbc3;;
+					}
+				}
+				.search{
+					&:before{
+						color: #b4bbc3;
+					}
+				}
+				&:hover{
+					border: 1px solid #999;
+				}
+				&:hover .search{
+					&:before{
+						color: #222;
+					}
+				}
+				&:hover input{
+					&::-webkit-input-placeholder{
+						color:#222;
+					}
+					&:-moz-placeholder{
+						color:#222;
+					}
+					&::-moz-placeholder{
+						color:#222;
+					}
+					&:-ms-input-placeholder{
+						color:#222;
+					}
+				}
+			}
+		}
+		.productsUl{
+			clear: both;
+			& > ul{
+				$height: 60px;
+				height: $height;
+				overflow: hidden;
+				& > a > li,
+				& > li{
+					float: left;
+					height: 100%;
+					width: 20%;
+					display: inline-block;
+					&:first-child{
+						width: 40%;
+						& > p{
+							margin-left: $left;
+						}
+					}
+					& > p{
+						color: #354052;
+						line-height: $height;
+					}
+				}
+			}
+			.productsUlList{
+				cursor: pointer;
+				border-bottom: 1px solid #e0e1e2;
+				background-color: #fff;
+				@include transition($property: background-color);
+				&:hover{
+					background-color: #F5F8FA;
+				}
+			}
+			.productsUlHead{
+				background-color: #F5F8FA;
+				border-top: 1px solid #e0e1e2;
+				border-bottom: 1px solid #e0e1e2;
+				& > li{
+					& > p{
+						font-weight: bold;
+						color: #798b9e;
+						cursor: default;
+					}
+				}
+				// .productsUlName{
+				// }
+				// .productsUlModel{
+				// 	width: 20%;
+				// }
+				// .productsUlUser{
+				// 	width: 20%;
+				// }
+				// .productsUlTime{
+				// 	width: 20%;
+				// }
+			}
+			.searchContentBox{
+				padding: 10px 0;
+				border-bottom: 1px solid #e0e1e2;
+				text-align: center;
+				.searchContent{
+					$h: 40px;
+					display: inline-block;
+					padding: 0 10px;
+					height: $h;
+					font-weight: bold;
+					color: #222;
+					line-height: $h;
+					background-color: #f6f6f6;
+					cursor: pointer;
+					@include transition($property: background-color);
+					&:hover{
+						background-color: #ccc;
+					}
+					&:after{
+						margin-left: 8px;
+						@include icomoon($content: '\e117',$size: 16px,$height: $h, $color: #222);
+					}
+				}
+			}
+		}		
+	}
+	.productsLoaidngBox{
+		text-align: center;
+		$h: 20px + 8px + 8px;
+		clear: both;
+		padding-bottom: 30px;
+		padding-top: 30px;
+		text-align: center;
+		.loading{
+			display: none;
+			padding: $h/2 - 14px/2 0;
+			$width: 14px;
+			height: $width;
+			& > li{
+				width: $width;
+				height: $width;
+				border: 1px solid #444;
+			}
+		}
+		.productsLoadMore{
+			height: $h;
+			& > div{
+				background-color: #64b5f6;
+				&:hover{
+					background-color: #2196f3;
+				}				
+			}
+		}
+	}
+	.productsLoaidngShow{
+		.loading{
+			display: inline-block;
+		}
+		.productsLoadMore{
+			display: none;
+		}
+	}
+}

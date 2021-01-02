@@ -1,0 +1,602 @@
+@import 'initializ.scss';
+
+html{
+	height: 100%;
+}
+
+body{
+	height: 100%;
+	background-color: #1b2a35;
+	overflow: hidden;
+}
+nav{
+	$top: 50px;
+	margin-top: $top!important;
+	margin-left: $top;
+	background-color: transparent;
+	@include respond('iphoneP'){
+		top:0;
+		margin-top: 30px!important;
+		margin-left: 30px;
+		padding-top: 0;
+	}
+	.navigation{
+		.home,
+		.menu > li > a{
+			display: inline-block;
+			color: #fff;
+			font-size: 48px;
+			font-weight: 600;
+			text-transform: uppercase;
+			// border-bottom: 3px solid #fff;
+			// @include transition($property: color);
+			@include respond('iphoneP'){
+				font-size: 28px;
+				font-weight: 900;
+			}
+			&:hover{
+				text-decoration: underline;
+				color: #2196f3;
+			}
+		}
+		.menu > .menuIcon > li{
+			background-color: #fff;
+		}
+	}
+}
+.noWhere{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	.mars{
+		position: relative;
+		z-index: 2;
+		margin: 0px 0 0 -10%;
+		width: 55%;
+		padding-top: 55%;
+		border-radius: 50%;
+		background-color: #ec7854;
+	}
+	.earth{
+		position: absolute;
+		z-index: 2;
+		top: 20%;
+		right: 10%;
+		width: 10%;
+		&:after{
+			position: relative;
+			z-index: 20;
+			display: block;
+			content: '';
+			padding-top: 100%;
+			border-radius: 50%;
+			background-color: #42A5F5;
+		}
+		.moon{
+			position: absolute;
+			top: 110px;
+			left: 140px;
+			width: 20%;
+			animation: yAxis 20s infinite ease-out;
+			will-change: transform;
+			&:after{
+				position: relative;
+				display: block;
+				content: '';
+				width: 100%;
+				padding-top: 100%;
+				border-radius: 50%;
+				background-color: #ffee58;
+				animation: xAxis 20s infinite ease-in;
+				will-change: transform;
+			}
+		}
+		@keyframes xAxis {
+			50% {
+				// animation-timing-function: ease-in;
+				transform: translateY(-100px);
+			}
+		}
+		@keyframes yAxis {
+			0%{
+				z-index: 30;
+				transform: translateX(0px) scale(1);
+			}
+			50% {
+				// animation-timing-function: ease-out;
+				transform: translateX(-180px) scale(1.2);
+				
+			}
+			100%{
+				z-index: 15;
+				transform: translateX(0px) scale(1);
+			}
+		}
+	}
+	.star{
+		position: absolute;
+		z-index: 1;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background-color: #fff;
+		@include rotate(45deg);
+	}
+	.star1{
+		width: 8px;
+		height: 8px;
+		top: 70%;
+		left: 10%;
+		animation: star5 1s infinite ease-out;
+		will-change: transform;
+		@include respond('iphoneP'){
+			display: none;
+		}
+	}
+	@keyframes star5{
+		50%{
+			-webkit-transform: scale(2);
+			   -moz-transform: scale(2);
+				  -ms-transform: scale(2);
+				   -o-transform: scale(2);
+					    transform: scale(2);
+		}
+	}
+	.star2{
+		width: 12px;
+		height: 12px;
+		top: 75%;
+		left: 35%;
+	}
+	.star3{
+		width: 14px;
+		height: 14px;
+		top: 20%;
+		left: 50%;
+		animation: star3 1s infinite ease-out 1s;
+		will-change: transform;
+		@include respond('ipadP'){
+			width: 8px;
+			height: 8px;
+		}
+	}
+	@keyframes star3{
+		50%{
+			-webkit-transform: scale(0.8);
+			   -moz-transform: scale(0.8);
+				  -ms-transform: scale(0.8);
+				   -o-transform: scale(0.8);
+					    transform: scale(0.8);
+		}
+	}
+	.star4{
+		width: 10px;
+		height: 10px;
+		bottom: 20%;
+		right: 10%;
+		animation: star4 1s infinite ease-out;
+		will-change: transform;
+		@include respond('iphoneP'){
+			display: none;
+		}
+	}
+	@keyframes star4{
+		50%{
+			-webkit-transform: scale(1.4);
+			   -moz-transform: scale(1.4);
+				  -ms-transform: scale(1.4);
+				   -o-transform: scale(1.4);
+					    transform: scale(1.4);
+		}
+	}
+	.star5{
+		width: 8px;
+		height: 8px;
+		bottom: 60%;
+		right: 15%;
+		@include respond('iphoneP'){
+			display: none;
+		}
+	}
+	.star6{
+		top: 50%;
+		left: 55%;
+		animation: star6 1s infinite ease-out;
+		will-change: transform;
+		@include respond('iphoneP'){
+			display: none;
+		}
+	}
+	@keyframes star6{
+		50%{
+			-webkit-transform: scale(1.2);
+			   -moz-transform: scale(1.2);
+				  -ms-transform: scale(1.2);
+				   -o-transform: scale(1.2);
+					    transform: scale(1.2);
+		}
+	}
+	@keyframes astronaut{
+		// 25%{
+		// 	-webkit-transform: translate(20px,0) rotate(20deg);
+		// 	   -moz-transform: translate(20px,0) rotate(20deg);
+		// 		  -ms-transform: translate(20px,0) rotate(20deg);
+		// 		   -o-transform: translate(20px,0) rotate(20deg);
+		// 			    transform: translate(20px,0) rotate(20deg);			
+		// }
+		33%{
+			-webkit-transform: translate(20px,-20px) rotate(20deg);
+			   -moz-transform: translate(20px,-20px) rotate(20deg);
+				  -ms-transform: translate(20px,-20px) rotate(20deg);
+				   -o-transform: translate(20px,-20px) rotate(20deg);
+					    transform: translate(20px,-20px) rotate(20deg);
+		}
+		66%{
+			-webkit-transform: translate(0,-40px) rotate(20deg);
+			   -moz-transform: translate(0,-40px) rotate(20deg);
+				  -ms-transform: translate(0,-40px) rotate(20deg);
+				   -o-transform: translate(0,-40px) rotate(20deg);
+					    transform: translate(0,-40px) rotate(20deg);
+		}
+	}
+	.astronaut{
+		position: absolute;
+		z-index: 30;
+		left: 50%;
+		top: 30%;
+		margin: 0 auto;
+		padding: 20px;
+		width: 340px;
+		-webkit-transform: translate(0,0) rotate(20deg);
+		   -moz-transform: translate(0,0) rotate(20deg);
+			  -ms-transform: translate(0,0) rotate(20deg);
+			   -o-transform: translate(0,0) rotate(20deg);
+				    transform: translate(0,0) rotate(20deg);
+		animation: astronaut 10s infinite ease-out;
+		will-change: transform;
+		@include respond('ipadL'){
+			left: auto;
+			right: 10%;
+		}
+		@include respond('ipadP'){
+			left: auto;
+		}
+		@include respond('iphoneP'){
+			top: 35%;
+			right: 10%;
+			animation: none;
+		}
+		& > div{
+			margin: 0 auto;
+			position: relative;
+			background-color: #fff;
+		}
+		.dialog404{
+			margin-bottom: 50px;
+			padding: 13px;
+			font-size: 22px;
+			border-radius: 8px;
+			color: #000;
+			text-align: center;
+			font-weight: 900;
+			font-family: 'Roboto Mono', monospace;
+			-webkit-transform: translate(-110px,40px) rotate(-20deg);
+			   -moz-transform: translate(-110px,40px) rotate(-20deg);
+				  -ms-transform: translate(-110px,40px) rotate(-20deg);
+				   -o-transform: translate(-110px,40px) rotate(-20deg);
+					    transform: translate(-110px,40px) rotate(-20deg);
+			@include respond('iphoneP'){
+				width: 300px;
+				font-size: 21px;
+				-webkit-transform: translate(-40px,20px) rotate(-20deg);
+				   -moz-transform: translate(-40px,20px) rotate(-20deg);
+					  -ms-transform: translate(-40px,20px) rotate(-20deg);
+					   -o-transform: translate(-40px,20px) rotate(-20deg);
+						    transform: translate(-40px,20px) rotate(-20deg);
+			}
+		    @include respond('iphone5'){
+				width: 280px;
+				padding: 13px 0;
+				font-size: 18px;
+				-webkit-transform: translate(-20px,15px) rotate(-20deg);
+				   -moz-transform: translate(-20px,15px) rotate(-20deg);
+					  -ms-transform: translate(-20px,15px) rotate(-20deg);
+					   -o-transform: translate(-20px,15px) rotate(-20deg);
+						    transform: translate(-20px,15px) rotate(-20deg);
+		    }
+			&:after{
+				float: right;
+				content: '';
+				// display: block;
+				margin-top: 12px;
+				margin-right: 80px;
+			    width: 0;
+			    height: 0;
+			    border-left: 10px solid transparent;
+			    border-right: 10px solid transparent;
+			    border-top: 12px solid #fff;
+			    @include respond('iphoneP'){
+			    	margin-right: 126px;
+			    }
+			    @include respond('iphone5'){
+			    	margin-right: 144px;
+			    }
+			}
+		}
+		.asHelmet{
+			z-index: 40;
+			padding: 23px 12px 10px;
+			width: 110px;
+			height: 100px;
+			border-radius: 70px 70px 50px 50px;
+			border: 2px solid #444;
+			.asFace{
+				width: 100%;
+				height: 100%;
+				background-color: #222;
+				border-radius: 50px 50px 40px 40px;
+				overflow: hidden;
+				.jupiter{
+					margin: 14px 0 0 0;
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+					background-color: #333;
+				}
+			}
+		}
+		.asBackpack{
+			z-index: 10;
+			margin-top: -30px;
+			padding: 20px 20px 0;
+			width: 120px;
+			height: 150px;
+			border-radius: 40px 40px 20px 20px;
+			background-color: #c9c9c9;
+			border-bottom: 20px solid #FF5722;
+			box-shadow: 0 0 2000px #000;
+			& > div{
+				float: left;
+				position: relative;
+				display: inline-block;
+				width: 60px;
+				height: 100%;
+				// background-color: #999;
+				& > div{
+					position: relative;
+					margin: 0 auto;
+					background-color: #fff;
+					border: 2px solid #444;
+				}
+				.asLowerArm{
+					z-index: 12;
+					width: 54px;
+					height: 90px;
+					border-radius: 20px 20px 30px 30px;
+					border-bottom-color: #666;
+				}
+				.asForearm{
+					z-index: 11;
+					margin: -20px auto 0;
+					width: 42px;
+					height: 120px;
+					border-radius: 40px 40px 40px 40px;
+					border-bottom: 4px solid #333;
+				}
+			}
+			.asLeftArm{
+				left: -49px;
+				top: -4px;
+				@include rotate(40deg);
+				// animation: asLeftArm 4s infinite ease-out;
+				.asLowerArm{
+					animation: asLeftLowerArm 4s infinite ease-out;
+				}
+				@keyframes asLeftLowerArm {
+					50%{
+						transform-origin: 100% 0%;
+						@include rotate(2deg);
+					}
+				}
+				.asForearm{
+					left: -15px;
+					top: -24px;
+					@include rotate(-30deg);
+					transform-origin: 100% 0%;
+					animation: asLeftForearm 4s infinite ease-out;
+				}
+				@keyframes asLeftForearm {
+					50%{
+						@include rotate(-24deg);
+					}
+				}
+			}
+
+			.asRightArm{
+				top: -40px;
+				right: -80px;
+				@include rotate(-80deg);
+				.asLowerArm{
+					height: 80px;
+					transform-origin:100% 0;
+					animation: asLowerArm 2.4s infinite ease-out;
+				}
+				@keyframes asLowerArm {
+					50%{
+						@include rotate(6deg);
+					}
+				}
+				.asForearm{
+					top: -30px;
+					right: 22px;
+					@include rotate(-56deg);
+					transform-origin:100% 0;
+					animation: asForearm 2.4s infinite ease-out;
+				}
+				@keyframes asForearm {
+					50%{
+						@include rotate(-40deg);
+					}
+				}
+			}
+		}
+		.asBodyBox{
+			z-index: 30;
+			margin-top: -178px;
+			background-color: transparent;
+			& > div{
+				z-index: 31;
+				position: relative;
+				margin: 0 auto;
+				background-color: #fff;
+			}
+			.asBody{
+				width: 132px;
+				height: 174px;
+				border-radius: 40px 40px 30px 30px;
+				border: 2px solid #444;
+				.lifeSupport{
+					position: absolute;
+					right: 12px;
+					margin: 43px 0 0;
+					padding-right: 30px;
+					width: 50px;
+					height: 40px;
+					border-radius: 6px;
+					background-color: #eee;
+					.asOxygen{
+						position: absolute;
+						top: 10px;
+						right: 8px;
+						width: 16px;
+						height: 16px;
+						border-radius: 50%;
+						background-color: #666;
+					}
+					.asnfo{
+						padding-top: 12px;
+						width: 100%;
+						& > li{
+							margin: 0 auto 6px;
+							width: 70%;
+							height: 2px;
+							background-color: #ccc;
+						}
+					}
+				}
+			}
+		}
+		.asLeg{
+			$width: 130px;
+			z-index: 20;
+			width: 130px;
+			// height: 200px;
+			background-color: transparent;
+			& > div{
+				float: left;
+				position: relative;
+				display: inline-block;
+				margin-top: -38px;
+				width: $width/2 - 2px;
+				height: 100%;
+				& > div{
+					position: relative;
+					margin: 0 auto;
+					width: $width/2 - 6px;
+					background-color: #fff;
+					border: 2px solid #444;
+				}
+				.asThigh{
+					z-index: 22;
+					margin-top: 0px;
+					height: 96px;
+					border-radius: 40px 40px 36px 36px;
+					border-bottom: 3px solid #562323;
+				}
+				.asClaf{
+					z-index: 20;
+					margin: -30px auto 0;
+					width: $width/2 - 8px;
+					height: 116px;
+					border-radius: 10px 10px 20px 20px;
+				}
+				.asfeet{
+					z-index: 23;
+					margin-top: -30px;
+					margin-left: -2px;
+					width: $width/2 - 4px;
+					height: 40px;
+					border-radius: 40%;
+					// background-color: #eee;
+					border-color: #555;
+					// box-shadow: 0 -1px 2px #ccc;
+					// border-top: 3px solid #999;
+					border-bottom-width: 8px;
+					// border-bottom-color: #555;
+				}
+			}
+			$deg: 6deg;
+			$deg2: $deg+2deg;
+			$move: 14px;
+			.asLeftLeg{
+				right: $move - 2px;
+				@include rotate($deg);
+				animation: asLeftLeg 4s infinite ease-out;
+				.asLeftThigh{
+					animation: asLeftThigh 4s infinite ease-out;
+				}
+				@keyframes asLeftThigh {
+					50%{
+						transform-origin:50% 90%;
+						@include rotate(-4deg);
+					}
+				}				
+				.asLeftClaf{
+					top: 3px;
+					left: 7px;
+					@include rotate(-$deg2);
+					
+				}
+			
+				.asfeet{
+					left: 15px;
+					@include rotate(-$deg2);
+				}
+			}
+			@keyframes asLeftLeg {
+				50%{
+					@include rotate(8deg);
+				}
+			}
+			.asRightLeg{
+				margin-left: 2px;
+				left: $move;
+				@include rotate(-$deg);
+				animation: asRightLeg 4s infinite ease-out;
+				.asRightThigh{
+					animation: asRightThigh 4s infinite ease-out;
+				}
+				@keyframes asRightThigh {
+					50%{
+						transform-origin:50% 90%;
+						@include rotate(4deg);
+					}
+				}					
+				.asRightClaf{
+					top: -3px;
+					left: -7px;
+					@include rotate($deg2);
+				}
+				.asfeet{
+					left: -15px;
+					@include rotate($deg2);
+				}
+			}
+			@keyframes asRightLeg {
+				50%{
+					@include rotate(-10deg);
+				}
+			}
+		}
+	}
+}

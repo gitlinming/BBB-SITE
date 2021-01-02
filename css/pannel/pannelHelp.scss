@@ -1,0 +1,80 @@
+@import 'initializ.scss';
+
+.helpWrap{
+	padding: 70px 0 10px;
+	min-height: 100%;
+	@include background($angle: right,$webkit: left, $color1: #2E87F8,$color2: #2EA1F8);
+	.helpBox{
+		padding-left: 50px;
+		margin: 0 auto;
+		text-align: center;
+		overflow: hidden;
+		& > div{
+			float: left;
+			display: inline-block;
+			box-sizing: border-box;
+			padding: 0 30px;
+			width: 50%;
+			max-width: 600px;
+			vertical-align: top;
+			@include respond('ipadL'){
+				float: none;
+				display: block;
+				width: 100%;
+			}
+			& > h1{
+				margin: 120px 0 30px;
+				font-size: 70px;
+				color: #fff;
+				text-align: left;
+			}
+			& > ul{
+				margin-top: 0;
+				& > li{
+					margin-bottom: 20px;
+					max-width: 600px;
+					max-height: 63px;
+					background-color: #45a8ff;
+					border-radius: 8px;
+					text-align: left;
+					overflow: hidden;
+					@include transition($property: max-height,$duration: .5s);
+					cursor: pointer;
+					& > h2,
+					& > p{
+						color: #fff;
+						text-align: left;
+					}
+					& > h2{
+						padding: 15px;
+					}
+					& > p{
+						padding: 0 15px 15px;
+						line-height: 28px;
+					}
+				}
+				.helpListOpen{
+					max-height: 200px;				
+				}
+			}
+			& > p{
+				margin-bottom: 0px;
+				color: #fff;
+				text-align: left;
+				& > a{
+					color: #fff;
+					&:hover{
+						text-decoration: underline;
+					}
+				}
+
+			}
+			.helpEmail{
+				margin: 10px 0 10px;
+			}
+			// .helpTel{
+			// 	margin-bottom: 20px;
+			// }
+		}
+	}
+}

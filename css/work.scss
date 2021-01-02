@@ -1,0 +1,285 @@
+@import 'initializ.scss';
+
+.work{
+	opacity: 0;
+	@include translate($y: 10px);
+	@include respond('iphone'){
+		opacity: 1;
+		@include translate($y: 0);
+	}
+	.function{
+		position: relative;
+		margin-top: 48px;
+		overflow: hidden;
+		@include respond('iphone'){
+			display: none;
+		}
+		& > ul{
+			float: left;
+			height: 85px;
+			overflow: hidden;
+			& > li{
+				display: inline-block;
+				height: 85px;
+				font-size: 72px;
+				font-weight: bold;
+				line-height: 85px;
+				@include translate($y: -85px);
+			}
+		}
+		$xx: 10px;
+		.shuffle{
+			position: relative;
+			float: right;
+			margin-top: 3px;
+			margin-right: $xx;
+			width: 90px;
+			cursor: pointer;
+			@include userSelect();
+			@include transition($property: opacity,$duration: .3s);
+			& > div{
+				position: relative;
+				padding: 15px 0;
+				overflow: hidden;
+				.shuffleBox{
+					width: 90px*2*99;
+					svg{
+						display: inline-block;
+						margin-left: -3px;
+						vertical-align: top;
+						.origin{
+							position: relative;
+							z-index: 20;
+							stroke: #888;
+						}
+						.reflection{
+							position: relative;
+							z-index: -1;
+							stroke: #000;
+							@include translate($x: 5px);
+							// -webkit-transform: translate(80px, 26px) scale(1, -1) translate(-80px, -26px);
+							//    -moz-transform: translate(80px, 26px) scale(1, -1) translate(-80px, -26px);
+							// 	-ms-transform: translate(80px, 26px) scale(1, -1) translate(-80px, -26px);
+							// 	 -o-transform: translate(80px, 26px) scale(1, -1) translate(-80px, -26px);
+							// 		transform: translate(80px, 26px) scale(1, -1) translate(-80px, -26px);
+						}
+					}
+				}
+				.shuffleMask{
+					position: absolute;
+					top: 0;
+					margin-left: 90px - 2px;
+					width: 200%;
+					height: 100%;
+					background-color: #fff;
+				}
+			}
+			& > ul{
+				position: absolute;
+				right: -$xx;
+			    width: 0;
+			    height: 0;
+			    border-top: 16px solid transparent;
+			    border-left: 18px solid #000;
+			    border-bottom: 16px solid transparent;
+				& > li{
+					display: none;
+					$d: 45deg;
+					margin-top: 5px;
+					width: 26px;
+					height: 8px;
+					@include rotate($deg: -$d);
+					border-radius: 210px;
+					&:first-child{
+						@include rotate($deg: $d);
+					}
+				}
+			}
+			.arrow1{
+				top: 5px;
+			}
+			.arrow2{
+				bottom: 6px;
+				border-left-color: #888;
+			}
+		}
+		.shuffleHover{
+			$second: 1s;
+			.arrow1{
+				border-left-color: #888;
+				animation: arrowA $second infinite cubic-bezier(0,0,.8,1);
+			}
+			.arrow2{
+				border-left-color: #000;
+				animation: arrowB $second infinite cubic-bezier(0,0,.8,1);
+			}
+			& > div > .shuffleBox{
+				@include transition($duration: .5s*99, $timingFunction: linear);
+				@include translate($x: -79px*99);
+				svg{
+					.origin{
+						stroke: #000;
+					}
+					.reflection{
+						stroke: #888;
+					}
+				}
+
+			}
+		}
+		$y: 41px;
+		$b: 15px;
+		$c: 36px;
+		$tx: -2px;
+		@keyframes arrowB {
+			0%{
+				@include transform($ty: 0px, $sx: 1, $sy: 1, $deg: 0deg);
+			}
+			10%{
+				@include transform($tx: $tx, $ty: -$b, $sx: 1, $sy: 1, $deg: -40deg);
+			}
+			30%{
+				@include transform($tx: $tx, $ty: -$c, $sx: 1, $sy: 1, $deg: -10deg);
+			}
+			50%{
+				@include transform($ty: -$y, $sx: 1, $sy: 1, $deg: 0deg);
+			}
+			70%{
+				@include transform($tx: $tx, $ty: -$b, $sx: 1, $sy: 1, $deg: 60deg);
+			}
+			90%{
+				@include transform($tx: $tx, $ty: 0px, $sx: 1, $sy: 1, $deg: 10deg);
+			}
+			100%{
+				@include transform($ty: 0px, $sx: 1, $sy: 1, $deg: 0deg);
+			}
+		}
+		@keyframes arrowA {
+			0%{
+				@include transform($ty: 0px, $sx: 1, $sy: 1, $deg: 0deg);
+			}
+			10%{
+				@include transform($tx: $tx, $ty: $b, $sx: 1, $sy: 1, $deg: 40deg);
+			}
+			30%{
+				@include transform($tx: $tx, $ty: $c, $sx: 1, $sy: 1, $deg: 10deg);
+			}
+			50%{
+				@include transform($ty: $y, $sx: 1, $sy: 1, $deg: 0deg);
+			}
+			70%{
+				@include transform($tx: $tx, $ty: $b, $sx: 1, $sy: 1, $deg: -60deg);
+			}
+			90%{
+				@include transform($tx: $tx, $ty: 0px, $sx: 1, $sy: 1, $deg: -10deg);
+			}
+			100%{
+				@include transform($ty: 0px, $sx: 1, $sy: 1, $deg: 0deg);
+			}
+		}
+	}
+	.projects{
+		clear: both;
+		padding-top: 30px;
+		padding-left: 30px;
+		margin-left: -30px;
+		width: 100%;
+		overflow: hidden;
+		$move: 32px;
+		& > li{
+			float: none;
+			// position: relative;
+			display: inline-block;
+			padding-bottom: 40px;
+			$h: 50px;
+			& > a{
+				position: relative;
+				display: block;
+				width: 100%;
+				height: 100%;
+				.overlay{
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: 10;
+					width: 100%;
+					height: 100%;
+					background-color: #fff;
+					opacity: 0;
+					@include transition();
+				}
+				& > p{
+					height: $h;
+					line-height: $h;
+					font-weight: bold;
+					color: #000;
+				}
+				.projectImgBox{
+					position: relative;
+					padding-top: 66.66666%;
+					background-color: #144BAF;
+					.projectImg{
+						z-index: 2;
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						background: #ccc no-repeat center;
+						background-size: cover;
+						@include transition($duration: .16s, $timingFunction: ease);
+					}
+					&:hover{
+						.projectImg{
+							@include translate($x: -$move,$y: -$move);
+							@include respond('iphone'){
+								@include translate($x: 0,$y: 0);
+							}
+						}
+					}
+					.projectInfo{
+						z-index: 1;
+						position: absolute;
+						width: 100%;
+						bottom: 0;
+						height: $move;
+						& > p{
+							float: right;
+							padding-left: 10px;
+							padding-right: $move;
+							color: #fff;
+							height: $move;
+							font-size: 14px;
+							line-height: $move;
+						}
+						.tag{
+							float: left;
+							&:before{
+								content: '';
+								display: inline-block;
+								margin-right: 12px;
+								width: 6px;
+								height: 6px;
+								background-color: #fff;
+								border-radius: 50%;
+								vertical-align: middle;
+							}
+						}
+					}
+				}				
+			}
+		}
+		.chosen{
+			.projectImgBox{
+				.projectImg{
+					@include translate($x: -$move,$y: -$move);
+				}
+			}
+		}
+	}
+}
+.workShow{
+	opacity: 1;
+	@include transition($duration: .2s);
+	@include translate($y: 0);
+}

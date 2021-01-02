@@ -1,0 +1,651 @@
+@import 'initializ.scss';
+
+@font-face {
+	font-family: 'icomoon';
+	src:url(../src/icons/fonts/icomoon.eot);
+	src:url('../src/icons/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+	url('../src/icons/fonts/icomoon.woff') format('woff'),
+	url('../src/icons/fonts/icomoon.ttf') format('truetype'),
+	url('../src/icons/fonts/icomoon.svg#icomoon') format('svg');
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+body{
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	font-family: Roboto, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+@each $type,$col,$gutter in $colList {
+  @for $i from 0 through $col {
+    .col#{$type}#{$i} {
+      float: left;
+      box-sizing: border-box;
+      @if $col == 12 {
+      	@if $type == I {
+      		@include respond('ipadL'){
+		      	@if $i == 0 {
+					display: none;
+		      	} @else {
+					padding: 0 $gutter/2;
+					width: $i*100%/$col;
+		      	}
+		    }
+      	} @else {
+	      	@if $i == 0 {
+	      		display: none;
+	      	} @else {
+		        padding: 0 $gutter/2;
+		        width: $i*100%/$col;
+	      	}
+      	}
+      } @else if $col == 8 {
+        @include respond('ipadP'){
+	      	@if $i == 0 {
+	      		display: none;
+	      	} @else {
+		        padding: 0 $gutter/2;
+		        width: $i*100%/$col;      		
+	      	}
+        }
+      } @else if $col == 4 {
+        @include respond('iphoneP'){
+	      	@if $i == 0 {
+	      		display: none;
+	      	} @else {
+		        padding: 0 $gutter/2;
+		        width: $i*100%/$col;      		
+	      	}
+        }
+      }
+    }
+    .left#{$type}#{$i} {
+      @if $col == 12 {
+      	margin-left: $i*100%/$col;
+      } @else if $col == 8 {
+        @include respond('ipadP'){
+        	margin-left: $i*100%/$col;
+        }
+      } @else if $col == 4 {
+        @include respond('iphoneP'){
+        	margin-left: $i*100%/$col;
+        }
+      }
+    }
+  }
+}
+
+.shuffle-move{
+ 	@include transition($duration: .3s);
+}
+
+.secreteMsgTop,
+.secreteMsgBottom{
+	z-index: 99;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 20px 0;
+	width: 100%;
+	height: 30px;
+	font-weight: 600;
+	line-height: 30px;
+	text-align: center;
+	white-space: nowrap;
+}
+.secreteMsgTop{
+	@include translate($y: -50px);
+}
+.secreteMsgBottom{
+	top: auto;
+	bottom: 0;
+	@include translate($y: 50px);
+}
+// .secreteMsgBottom2{
+// 	width: 100%;
+// 	height: 0;
+// 	text-align: center;
+// 	@include translate($y: 20px);
+// }
+nav{
+	z-index: 59;
+	position: fixed;
+	top: 0;
+	padding-bottom: 10px;
+	margin-top: 100px;
+	width: 100%;
+	@include userSelect();
+	@include transition-transform($duration: .2s);
+	@include respond('ipadL'){
+		margin-top: 40px;
+	}
+	@include respond('iphoneP'){
+		top: -280px;
+		margin-top: 0;
+		padding-top: $bodyPaddingP;
+	}
+	.mask{
+		display: none;
+		position: absolute;
+		z-index: -1;
+		top: -117px;
+		padding-top: 10px;
+		width: 100%;
+		height: 100%;
+		background-color: #000;
+		@include transition-transform($duration: .3s,$timingFunction: cubic-bezier(.25,.1,.34,1));
+		@include respond('iphoneP'){
+			display: block;
+		}
+	}
+	.navBox{
+		@include maxWidth();
+		& > div{
+			position: relative;
+			padding-left: $gutterD/2;
+			padding-right: $gutterD/2;
+			@include respond('ipadP'){
+				padding-left: 0;
+				padding-right: 0;
+			}
+			.logo,
+			& > ul > li{
+				font-weight: 700;
+			}
+			.logo{
+				display: inline-block;
+				text-transform: uppercase;
+				& > a{
+					position: relative;
+					display: block;
+					height: 19px;
+					color: #000;
+					overflow: hidden;
+					@include transition($property: color);
+					& >div{
+						display: inline-block;
+						margin-right: 4px;
+						height: 100%;
+						@include transition-transform();
+						& > p{
+							display: block;
+							line-height: 19px;
+						}
+						&:first-child{
+							@include translate($y: -19px);
+						}
+					}
+					&:hover{
+						& >div{
+							@include translate($y: -19px);
+							@include respond('iphoneP'){
+								@include translate($y: 0px);
+							}
+							&:first-child{
+								@include translate($y: 0);
+								@include respond('iphoneP'){
+									@include translate($y: -19px);
+								}
+							}
+						}
+					}
+				}
+			}
+			.navMenu{
+				float: right;
+				overflow: hidden;
+				@include respond('iphoneP'){
+					float: none;
+					margin-top: 15px;
+					margin-bottom: 28px;
+				}
+				& > li{
+					display: inline-block;
+					margin-left: 25px;
+					vertical-align: top;
+					@include respond('iphoneP'){
+						display: block;
+						margin-left: 0;
+						margin-top: 4px;
+						text-align: right;
+						opacity: 0;
+						@include translate($y: -33px);
+					}
+					&:first-child{
+						margin-left: 0;
+					}
+					& > a{
+						display: inline-block;
+						color: #000;
+						overflow: hidden;
+						@include transition($property: color);
+						@include respond('iphoneP'){
+							color: #fff;
+							font-size: 50px;
+						}
+						.line{
+							margin-top: 4px;
+							width: 100%;
+							height: 3px;
+							background-color: #000;
+							@include translate($x: -105%);
+							@include transition-transform($duration: .1s,$timingFunction: ease);
+							@include respond('iphoneP'){
+								display: none;
+							}
+						}
+						&:hover{
+							.line{
+								@include translate($x: 0);
+							}
+						}
+					}
+					.router-link-active{
+						@include respond('iphoneP'){
+							.text{
+								color: #777;
+							}
+						}
+						.line{
+							@include translate($x: 0);
+						}
+					}
+				}
+				.navLi0{
+					@include respond('iphoneP'){
+						@include transition($duration: .3s,$delay: .08s);
+					}
+				}
+				.navLi1{
+					@include respond('iphoneP'){
+						@include transition($duration: .3s,$delay: .1s);
+					}
+				}
+				.navLi2{
+					@include respond('iphoneP'){
+						@include transition($duration: .3s,$delay: .12s);
+					}
+				}
+				.navLi3{
+					@include respond('iphoneP'){
+						@include transition($duration: .3s,$delay: .14s);
+					}
+				}
+			}
+			.menuIcon{
+				display: none;
+				float: right;
+				margin-top: 3px;
+				padding-bottom: 9px;
+				width: 18px;
+				text-align: right;
+				cursor: pointer;
+				@include transition($duration: .2s);
+				@include respond('iphoneP'){
+					display: block;
+				}
+				& > li{
+					height: 2px;
+					width: 100%;
+					background-color: #222;
+					border-radius: 4px;
+				}
+				.menuIconMiddle{
+					margin: 3px 0;
+					-webkit-transition: margin .1s, background-color .4s;
+					 -moz-transition: margin .1s, background-color .4s;
+					   -o-transition: margin .1s, background-color .4s;
+					      transition: margin .1s, background-color .4s;
+					transition-timing-function: ease;
+					will-change: transform; //using gpu
+				}
+				.menuIconTop,
+				.menuIconBottom{
+					@include transition($property: background-color,$duration: .4s);
+				}
+			}
+		}
+	}
+	.navWhite{
+		& > div{
+			.logo{
+				& > a{
+					color: #fff;
+				}
+			}
+			& > ul{
+				& > li{
+					& > a{
+						color: #fff;
+						.line{
+							background-color: #fff;
+						}
+					}
+				}
+			}
+			.menuIcon{
+				& > li{
+					background-color: #fff;
+				}
+			}
+		}
+	}
+}
+
+.backgorundNav{
+	margin-top: 0;
+	padding-top: 100px;
+	background-color: red;
+	@include respond('ipadL'){
+		padding-top: 40px;
+	}
+	@include respond('iphoneP'){
+		padding-top: $bodyPaddingP;
+	}
+}
+
+.navActived{
+	@include respond('767px'){
+		padding-bottom: 14px;
+		background-color: transparent;
+		@include translate($y: 280px);
+		.mask{
+			@include translate($y: 113px);
+		}
+		& > div > div{
+			.logo{
+				& > a{
+					color: #fff;
+				}
+			}
+			& > ul{
+				& > li{
+					& > a{
+						color: #fff;
+						.line{
+							background-color: #fff;
+						}
+					}
+				}
+			}
+			.navMenu{
+				& > li{
+					opacity: 1;
+					@include translate($y: 0);
+				}
+			}
+			.menuIcon{
+				padding-top: 3px;
+				$rotate: 45deg;
+				$y: 5px;
+				& > li{
+					background-color: #fff;
+				}
+				.menuIconTop{
+					position: relative;
+					top: 2px;
+					-webkit-transform: rotate($rotate);
+					   -moz-transform: rotate($rotate);
+					    -ms-transform: rotate($rotate);
+					     -o-transform: rotate($rotate);
+							transform: rotate($rotate);
+					@include transition-transform($delay: .1s,$timingFunction: cubic-bezier(.64,0,.63,2.2));
+				}
+				.menuIconBottom{
+					position: relative;
+					top: -2px;
+					-webkit-transform: rotate(-$rotate);
+					   -moz-transform: rotate(-$rotate);
+					    -ms-transform: rotate(-$rotate);
+					     -o-transform: rotate(-$rotate);
+							transform: rotate(-$rotate);
+					@include transition-transform($delay: .1s,$timingFunction: cubic-bezier(.64,0,.63,2.2));
+				}
+				.menuIconMiddle{
+					margin: 0;
+					-webkit-transform: scale(0,0);
+					   -moz-transform: scale(0,0);
+						-ms-transform: scale(0,0);
+						 -o-transform: scale(0,0);
+							transform: scale(0,0);
+				}
+			}
+		}
+	}
+}
+.navToBottom{
+	.mask{
+		display: none;
+	}
+	.navBox{
+		@include transition-transform($duration: .4s);
+		@include translate($y: 30%);
+	}
+}
+
+#wrap{
+	box-sizing: border-box;
+	padding-top: 130px + 20px;
+	@include respond('ipadL'){
+		padding-top: 60px;
+	}
+	& > div{
+		position: relative;
+		height: 100%;
+		@include padding();
+		overflow: hidden;
+		.header{
+			position: relative;
+			cursor: default;
+			display: inline-block;
+			margin-top: 48px;
+			width: auto;
+			overflow: hidden;
+			& > li{
+				position: relative;
+				z-index: 1;
+				font-size: 36px;
+				font-weight: bold;
+			}
+			.actually,
+			.lie{
+				@include transition($duration: .21s,$timingFunction: ease-out);
+				will-change: transform;
+			}
+			.actually{
+				z-index: 0;
+				position: absolute;
+				color: #fff;
+				top: 0;
+			}
+			&:hover{
+				.actually,
+				.lie{
+					color: #E2E2E2;
+					@include translate($y: 44px);
+					@include respond('767px'){
+						color: #fff;
+						@include translate($y: 0);
+					}
+				}
+				.lie{
+					@include respond('767px'){
+						color: #000;
+					}
+				}
+			}
+		}
+	}
+	.lab,
+	.work,
+	.about{
+		height: auto;
+		overflow: auto;
+		min-height: 80px;
+	}
+	// .detailWrap{
+	// 	overflow: hidden;
+	// }
+	.contact,
+	.detailWrap{
+		@include respond('iphoneP'){
+			height: auto;
+			overflow: auto;
+		}
+	}
+	.detailWrap{
+		@include respond('ipadL'){
+			height: auto;
+			overflow: auto;
+		}
+		@include respond('ipadP'){
+			height: 100%;
+		}
+		@include respond('iphoneP'){
+			height: auto;
+		}
+	}
+	.whiteBackground{
+		z-index: 19;
+		position: fixed;
+		left: 0;
+		top: 0;
+		margin: 0;
+		padding: 0;
+		height: 140px;
+		width: 100%;
+		max-width: 100%;
+		background-color: #fff;
+		@include respond('ipadL'){
+			height: 80px;
+		}
+		@include respond('iphoneP'){
+			height: 77px;
+		}
+	}
+	#transport,
+	#detailMask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	#detailMask{
+		background-color: #fff;
+	}
+	.detailMask{
+		opacity: 0;
+		@include transition($property: opacity,$duration: .3s);
+	}
+	.detailMaskShow{
+		opacity: 1;
+	}
+	.transportLeave{
+		@include transition($duration: .4s,$delay: .2s,$timingFunction: ease);
+		@include translate($y: -100%);
+	}
+	.navCellMask{
+		display: none;
+		z-index: 48;
+		position: fixed;
+		top: -100%;
+		left: 0;
+		padding: 0;
+		height: 100%;
+		width: 100%;
+		background-color: #000;
+		@include transition-transform($duration: .3s);
+		@include respond('iphoneP'){
+			display: block;
+		}
+	}
+	.navMaskHalf{
+		@include transition-transform($delay: .2s);
+		@include translate($y: 350px);
+	}
+	.navMaskFull{
+		@include transition-transform($delay: 0s,$duration: .3s);
+		@include translate($y: 100%);
+	}
+}
+.noPadding{
+	padding-top: 130px!important;
+	@include respond('ipadL'){
+		padding-top: 60px!important;
+	}
+	nav{
+		padding-bottom: 0;
+		@include respond('ipadL'){
+			padding-bottom: 10px;
+		}
+		@include respond('iphoneP'){
+			padding-top: $bodyPaddingP;
+		}
+	}
+}
+.loadingBox{
+	$width: 18px;
+	clear: both;
+	position: absolute;
+	left: 50%;
+	top: 50px;
+	margin-left: -37px;
+	width: 74px;
+	height: $width+12px;
+	text-align: center;
+	overflow: hidden;
+	opacity: 0;
+	@include translate($y: 30px);
+	@include transition($duration: .3s);
+	.loading{
+		display: inline-block;
+		height: $width;
+		& > li{
+			float: left;
+			width: $width;
+			height: $width;
+			border-radius: 50%;
+			border: 2px solid #000;
+			@include transition($duration: .3s);
+		}
+		.loadBall1{
+			background-color: #144BAF;
+			animation: loadBall .7s infinite cubic-bezier(0.4, 0.0, 0.6, 1) .3s;
+		}
+		.loadBall2{
+			margin-left:4px;
+			margin-right:4px;
+			background-color: #FABED7;
+			animation: loadBall .7s infinite cubic-bezier(0.4, 0.0, 0.6, 1) .2s;
+		}
+		.loadBall3{
+			background-color: #FA5A3C;
+			animation: loadBall .7s infinite cubic-bezier(0.4, 0.0, 0.6, 1) .1s;
+		}
+		@keyframes loadBall {
+			50%{
+				$y: 6px;
+				-webkit-transform: translatey($y);
+				   -moz-transform: translatey($y);
+					-ms-transform: translatey($y);
+					 -o-transform: translatey($y);
+						transform: translatey($y);
+			}
+		}
+	}
+}
+.loadingShow{
+	opacity: 1;
+	@include translate($y: 0);
+}
+.loadingClose{
+	display: none;
+}
+
+

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,UAOC,CANA,WAAW,CAAE,SAAS,CACtB,GAAG,CAAC,6CAA6C,CACjD,GAAG,CAAC,2RAGiE,CAEtE,IAAI,CACH,WAAW,CAAE,qHAAqH,CAClI,WAAW,CAAE,GAAG",
+"sources": ["pannelGlobal.scss"],
+"names": [],
+"file": "pannelGlobal.css"
+}

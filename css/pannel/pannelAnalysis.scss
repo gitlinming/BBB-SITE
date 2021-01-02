@@ -1,0 +1,963 @@
+@import 'initializ.scss';
+
+.analysisWrap{
+	margin: 0 auto 100px;
+	padding: 78px 30px 0;
+	max-width: 1440px;
+	.analysisBox{
+		$analysisBoxH: 40px;
+		.datepickWrap{
+			position: relative;
+			margin: 100px auto 130px;
+			text-align: center;
+			// border-bottom: 2px solid #e2e2e2;
+			.datePickBox{
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: $analysisBoxH;
+				& > div{
+					float: left;
+					display: inline-block;
+					margin-right: 20px;
+					font-size: 20px;
+					font-weight: 900;
+					color: #b0bec5;
+					line-height: $analysisBoxH;
+					text-transform: capitalize;
+					cursor: pointer;
+					@include transition();
+					&:hover{
+						color: #0277bd;
+					}
+				}
+				// .lastWeek{
+				// 	border-right: none;
+				// 	border-radius: 4px 0 0 4px;
+				// }
+				// .lastMonth{
+				// 	border-radius: 0 4px 4px 0;
+				// }
+			}
+			.monthData .lastMonth,
+			.weekData .lastWeek{
+				padding: 0 12px;
+				color: #0277bd;
+				background-color: #fff;
+				// box-shadow: 0 2px 16px #e0e0e0;
+				@include scale($x: 1.2,$y: 1.2);
+				border-radius: 4px;
+			}
+			.monthData,
+			.weekData{
+				.lastMonth{
+					margin-left: 28px;
+				}
+				.lastWeek{
+					margin-right: 0;
+				}
+			}
+			.weekData{
+				.lastWeek{
+					margin-left: 10px;
+				}
+			}
+			.date-picker{
+			    $radius: 6px;
+			    $w: 40px;
+				margin: 0 auto;
+				display: inline-block;
+			    position: relative;
+			    height: $analysisBoxH;
+			    vertical-align: top;
+			    .input-wrapper{
+			        border-radius: 2px;
+			        padding: 0 12px;
+			        height: $analysisBoxH;
+			        box-sizing: border-box;
+			        @include transition-transform();
+			        .input{
+			            height: 100%;
+			            width: 100%;
+			            font-size: 48px;
+			            font-weight: 900;
+			        	line-height: $analysisBoxH;
+			            color: #b0bec5;
+			            box-sizing: border-box;
+			            outline: none;
+			            cursor: pointer;
+				        & > span{
+				        	margin: 0 9px;
+				        	font-size: 30px;
+				        	vertical-align: top;
+				        }
+			        }
+			        .cancel-btn{
+			        	display: none;
+			            height: 14px;
+			            width: 14px;
+			        }
+			    }
+			    .customRange{
+			    	border: 4px;
+					@include scale($x: 1.2,$y: 1.2);
+			    	.input{
+			    		color: #0277bd;
+			    	}
+			    	& > span{
+			    		color: #0277bd;
+			    	}
+			    }
+			    .date-panel{
+			        position: absolute;
+			        top: 60px;
+			        margin-left: -151px;
+			        z-index: 50;
+			        border: 1px solid #eee;
+			        box-sizing: border-box;
+			        width: 302px;
+			        padding: 5px 10px 10px;
+			        box-sizing: border-box;
+			        background-color: #fff;
+			        transform: translateY(4px);
+			        border-radius: $radius + 2px;
+			        box-shadow: 0 4px 10px #ccc;
+			    }
+			    .panel-header{
+			    	margin: 14px 0;
+			        display: flex;
+			        flex-flow: row nowrap;
+			        width: 100%;
+			    }
+			    .arrow-left, .arrow-right{
+			    	position: relative;
+			        flex: 1;
+			        font-size: 20px;
+			        line-height: 2;
+			        background-color: #fff;
+			        text-align: center;
+			        cursor: pointer;
+			        &:before{
+			        	position: absolute;
+			        	top: 50%;
+			        	left: 50%;
+			        	display: block;
+			        	content: '';
+			    	    width: 0;
+			    	    height: 0;
+			    	    margin-left: -5px;
+			    	    margin-top: -6px;
+			            transition: border-color .45s cubic-bezier(0.23, 1, 0.32, 1);
+			        }
+			        &:hover:before{
+			        	 border-right-color: #42a5f5;
+			        	 border-left-color: #42a5f5;
+			        }
+			    }
+			    .arrow-left{
+			        &:before{
+			    	    border-top: 6px solid transparent;
+			    	    border-right: 10px solid #444;
+			    	    border-bottom: 6px solid transparent;
+			        }
+			    }
+			    .arrow-right{
+			        &:before{
+			    	    border-top: 6px solid transparent;
+			    	    border-left: 10px solid #444;
+			    	    border-bottom: 6px solid transparent;
+			        }
+			    }
+			    .year-range{
+			        font-size: 20px;
+			        font-weight: 900;
+			        line-height: 2;
+			        flex: 3;
+			        display: flex;
+			        justify-content: center;
+			        & > div{
+			        	display: inline-block;
+			        	line-height: $w - 3px;
+			        }
+			    }
+			    .year-month-box{
+			        flex: 5;
+			        display: flex;
+			        flex-flow: row nowrap;
+			        justify-content: space-around;
+			    }
+			    .type-year, .type-month, .date-list{
+			        background-color: #fff;
+			    }
+
+			    .year-box, .month-box{
+			        transition: all ease .1s;
+			        font-weight: 600;
+			        font-family: Roboto, sans-serif;
+			        flex: 1;
+			        text-align: center;
+			        font-size: 28px;
+			        line-height: 2;
+			        color: #444;
+			        cursor: pointer;
+			        background-color: #fff;
+			    }
+			    .year-box{
+			    	padding-right: 6px;
+			    	text-align: right;
+			    }
+			    .month-box{
+			    	padding-left: 6px;
+			    	text-align: left;
+			    }
+			    .year-list, .month-list{
+			        display: flex;
+			        flex-flow: row wrap;
+			        justify-content: space-between;
+			        li{
+			            font-family: Roboto, sans-serif;
+			            transition: all .45s cubic-bezier(0.23, 1, 0.32, 1);
+			            cursor: pointer;
+			            text-align: center;
+			            font-size: 20px;
+			            width: 33%;
+			            padding: 10px 0;
+			            &:hover{
+			                background-color: #90caf9;
+			                color: #fff;
+			            }
+			            &.selected{
+			                background-color: #42a5f5;
+			                color: #fff;
+			            }
+			            &.invalid{
+			                cursor: not-allowed;
+			                color: #ddd;
+			            }
+			        }
+			    }
+			    .date-list{
+			        display: flex;
+			        flex-flow: row wrap;
+			        justify-content: flex-start;
+			        .valid:hover{
+			            background-color: #eee;
+			        }
+			        $add: 6px;
+			        li{
+			            transition: all ease .1s;
+			            cursor: pointer;
+			            box-sizing: border-box;
+			            // border-bottom: 1px solid #fff;
+			            position: relative;
+			            // margin: 2px;
+			            &:not(.firstItem){
+			                // margin-left: 10px;
+			            }
+			            .message{
+			                font-family: Roboto, sans-serif;
+			                font-weight: 300;
+			                font-size: 14px;
+			                position: relative;
+			                height: 100%;
+			                .bg{
+			                    height: 100%;
+			                    width: 100%;
+			                    // border-radius: 50%;
+			                    position: absolute;
+			                    z-index: 10;
+			                    top: 0;
+			                    left: 0;
+			                    transform: scale(0);
+			                    opacity: 0;
+			                    border-radius: 50%;
+			                	transition: transform .45s cubic-bezier(0.23, 1, 0.32, 1),opacity .45s cubic-bezier(0.23, 1, 0.32, 1),padding .45s cubic-bezier(0.23, 1, 0.32, 1);
+			                }
+			                span{
+			                    position: absolute;
+			                    z-index: 20;
+			                    left: 50%;
+			                    top: 50%;
+			                    color: #666;
+			                    font-weight: 600;
+			                    transform: translate3d(-50%, -50%, 0);
+			                }
+			            }
+		                .selected{
+		                	.bg{
+		                		transition: none;
+		                	}
+		                }
+			            &:hover{
+			            	 .message{
+			                    .bg{
+			                        background-color: #42a5f5;
+			                        transform: scale(1);
+			                        opacity: 1;
+			                    }
+			                    span{
+			                        color: #fff;
+			                        transition: all .45s cubic-bezier(0.23, 1, 0.32, 1);
+			                    }
+			                }
+			            }
+			            &.invalid{
+			                cursor: not-allowed;
+			                color: #ddd;
+			            }
+			            .selected{
+			                .bg{
+			                    background-color: #42a5f5;
+			                    transform: scale(1);
+			                    opacity: 1;
+			                    border-radius: 0;
+			                }
+			        		.firstSelected{
+			        			padding-left: $add;
+			        			margin-left: -$add;
+			        			border-radius: $w 0 0 $w; 
+			        		}
+			        		.lastSelected{
+			        			padding-right: $add;
+			        			margin-right: -$add;
+			        			border-radius: 0 $w $w 0; 
+			        		}
+			        		.onlySelected{
+			                	margin: 0;
+			                	padding: 0;
+			                	border-radius: 50%;
+			        		}
+			                .selecting{
+			                	margin: 0;
+			                	padding: 0;
+			                	border-radius: 50%;
+			                }
+			                span{
+			                    color: #fff;
+			                }
+			            }
+			        }
+			        .rangeSelected{
+			        	z-index: 0;
+			        	.message{
+			        		.bg{
+			    		    	background-color: #42a5f5;
+			    		        transform: scale(1);
+			    		        border-radius: 0;
+			    		        opacity: 1;
+			    		        // transition: background-color .45s cubic-bezier(0.23, 1, 0.32, 1) 0;
+			    		        transition: opacity .45s cubic-bezier(0.23, 1, 0.32, 1);
+			        		}
+			        		& > span{
+			        			color: #fff;
+			        		}
+			        	}
+			        }
+			        $overflow: 20px;
+			        .firstItem,
+			        .lastItem{
+			        	.message{
+			        		.selecting{
+			        			padding: 0;
+			        			margin: 0;
+			        			border-radius: 50%;
+			        		}
+			        	}
+			    		&:hover{
+			    			.message{
+			    				.bg{
+			    	    			padding: 0;
+			    	    			margin: 0;
+			    	    			border-radius: 50%;
+			    				}
+			    			}
+			    		}
+			        }
+			        .firstItem{
+			    		&:hover{
+			    			.selected{
+			    				.bg{
+			    					padding-left: $overflow;
+			    					margin-left: -$overflow;
+			    					border-radius: $radius 0 0 $radius;
+			    				}
+			    			}
+			    		}
+			        }
+			        .lastItem{
+			    		&:hover{
+			    			.selected{
+			        			.bg{
+			        				padding-right: $overflow;
+			        				margin-right: -$overflow;
+			        				border-radius: 0 $radius $radius 0;
+			        			}
+			    			}
+			    		}
+			        }
+			        .rangeSelected{
+			        	.message{
+			        		.bg,
+			        		.selecting{
+			        			border-radius: 0;
+			        		}
+			        	}
+			        }
+			        .firstItem{
+			        	.selected,
+			        	.message{
+			        		.bg{
+			        			padding-left: $overflow;
+			        			margin-left: -$overflow;
+			        			border-radius: $radius 0 0 $radius;
+			        		}
+			        		.firstSelected{
+			        			padding-left: $add;
+			        			margin-left: -$add;
+			        			border-radius: $w 0 0 $w; 
+			        		}
+			        		.lastSelected{
+			        			padding-right: $add;
+			        			margin-right: -$add;
+			        			border-radius: $radius $w $w $radius; 
+			        		}
+			        	}
+			        }
+			        .lastItem{
+			        	.selected,
+			        	.message{
+			        		.bg{
+			        			padding-right: $overflow;
+			        			margin-right: -$overflow;
+			        			border-radius: 0 $radius $radius 0;
+			        		}
+			        		.lastSelected{
+			        			padding-right: $add;
+			        			margin-right: -$add;
+			        			border-radius: 0 $w $w 0; 
+			        		}
+			        		.firstSelected{
+			        			padding-left: $add;
+			        			margin-left: -$add;
+			        			border-radius: $w $radius $radius $w; 
+			        		}
+			        	}
+			        }
+			        .firstItem,
+			        .lastItem{
+			        	.selected{
+			        		.selecting{
+			        			padding: 0;
+			        			margin: 0;
+			        			border-radius: 50%;
+			        		}
+			        	}
+			    		&:hover{
+			    			.selected{
+			    	    		.firstSelected{
+			    	    			padding-left: $add;
+			    	    			margin-left: -$add;
+			    	    			border-radius: $w 0 0 $w; 
+			    	    		}
+			    	    		.lastSelected{
+			    					padding-right: $add;
+			    					margin-right: -$add;
+			    					border-radius: 0 $w $w 0; 
+			    	    		}
+			    	    		.selecting{
+			    	    			padding: 0;
+			    	    			margin: 0;
+			    	    			border-radius: 50%;
+			    	    		}
+			    	    	}
+			    		}
+			        }
+			        .firstRangeSelected,
+			        .lastRangeSelected{
+			        	z-index: 0;
+			        }
+			        .firstRangeSelected{
+			        	.message{
+			        		.bg{
+			        			padding-left: $w/2;
+			        			margin-left: -$w/2;
+			        		}
+			        	}
+			        }
+			        .lastRangeSelected{
+			        	.message{
+			        		.bg{
+			        			padding-right: $w/2;
+			        			margin-right: -$w/2;
+			        		}
+			        	}
+			        }
+			    }
+			    .weeks{
+			        display: flex;
+			        flex-flow: row wrap;
+			        justify-content: flex-start;
+			        li{
+			            font-weight: 600;
+			            color: #999;
+			        }
+			    }
+			    .weeks, .date-list{
+			        width: 100%;
+			        text-align: center;
+			        .preMonth, .nextMonth{
+			        	& > div{
+			        		& > span{
+			        			color: #ddd;
+			        		}
+			        	}
+			        	.selected{
+			        		& > span{
+			        			color: #fff;
+			        		}
+			        	}
+			            &:hover{
+			            	& > div{
+			            		.bg{
+			            			opacity: 0;
+			            		}
+			            		span{
+			            			color: #ddd;
+			            		}
+			            	}
+				        	.selected{
+			            		.bg{
+			            			opacity: 1;
+			            		}
+				        		& > span{
+				        			color: #fff;
+				        		}
+				        	}
+			            }
+			        }
+			        li{
+			        	padding-top: 10px;
+			        	// margin-bottom: 10px;
+			            font-family: Roboto;
+			            width: $w;
+			            height: $w+10px;
+			            text-align: center;
+			            line-height: $w;
+			        }
+			    }
+			    .weeks{
+			        li{
+			        	padding-top: 0;
+			        	height: $w;
+			        }
+
+			    }
+			    .toggle-enter, .toggle-leave-active{
+			        opacity: 0;
+			        transform: translateY(-10px);
+			    }
+			    .toggle-enter-active, .toggle-leave-active{
+			        transition: all ease .2s;
+			    }
+			    .fade-enter, .fade-leave-active{
+			        opacity: 0;
+			        transform: scale3d(0, 0, 0);
+			    }
+			    .fade-enter-active, .fade-leave-active{
+			        transition: all ease .1s;
+			    }
+			}
+		}
+		.analysis{
+			$gap: 30px;
+			overflow: hidden;
+			& > div{
+				float: left;
+				display: inline-block;
+				box-sizing: border-box;
+				margin-bottom: $gap;
+				height: 500px;
+				border-radius: 4px;
+				& > div{
+					$h: 80px;
+					position: relative;
+					box-sizing: border-box;
+					padding: 0 30px;
+					width: 100%;
+					height: 100%;
+					border-radius: 4px;
+					background-color: #fff;
+					overflow: hidden;
+					.anaAction{
+						overflow: hidden;
+						&>div{
+							position: relative;
+							float: left;
+							height: $h;
+							& > p{
+								position: absolute;
+								bottom: 0;
+								font-size: 48px;
+								color: #333;
+								font-weight: 900;
+								text-transform: capitalize;
+								vertical-align: bottom;
+							}
+						}
+						& > ul{
+							float: right;
+							margin-right: 32px;
+							height: $h;
+							overflow: hidden;
+							& > li{
+								display: inline-block;
+								margin-top: $h/2;
+								margin-right: 10px;
+								height: $h/2;
+								cursor: pointer;
+								& > span{
+									display: inline-block;
+									width: 8px;
+									height: 8px;
+									border-radius: 50%;
+									background-color: #fff;
+									border-width: 3px;
+									border-style: solid;
+									border-color: #ccc;
+									vertical-align: middle;
+									@include transition();
+								}
+								& > div{
+									display: inline-block;
+									height: $h/2;
+									padding: 0 10px;
+									line-height: $h/2;
+									color: #ccc;
+									border-radius: 4px;
+									@include transition();
+								}
+							}
+						}
+					}
+				}
+			}
+			.pvAnaBox{
+				width: 70%;
+				& > div{
+					.anaAction{
+						& > ul{
+							& > li{
+								& > span,
+								& > div{
+									border-color: #ccc;
+									color: #ccc;
+								}
+							}
+							.pvAna{
+								&:hover{
+									& > span,
+									& > div{
+										border-color: #2196F3;
+										color: #2196F3;
+									}
+								}
+							}
+							.newUserAna{
+								&:hover{
+									& > span,
+									& > div{
+										border-color: #ff9800;
+										color: #ff9800;
+									}									
+								}
+							}
+							.activedUserAna{
+								&:hover{
+									& > span,
+									& > div{
+										border-color: #009688;
+										color: #009688;
+									}
+								}
+							}
+						}
+						.pvAnaSelected{
+							.pvAna{
+								& > span,
+								& > div{
+									border-color: #2196F3;
+									color: #2196F3;
+								}
+							}
+						}
+						.newUserAnaSelected{
+							.newUserAna{
+								& > span,
+								& > div{
+									border-color: #ff9800;
+									color: #ff9800;
+								}
+							}
+						}
+						.activedUserAnaSelected{
+							.activedUserAna{
+								& > span,
+								& > div{
+									border-color: #009688;
+									color: #009688;
+								}
+							}
+						}
+					}
+				}
+			}
+			.pageAnaBox,
+			.productAnaBox{
+				width: 40%;
+				.anaAction{
+					& > ul{
+						.pagesVisit{
+							& > span,
+							& > div{
+								border-color: #f44336;
+								color: #f44336;
+							}
+						}
+					}
+					.pagesDurationActived{
+						.pagesVisit{
+							& > span,
+							& > div{
+								border-color: #ccc;
+								color: #ccc;
+							}
+						}
+						.pagesDuration{
+							& > span,
+							& > div{
+								border-color: #ff9800;
+								color: #ff9800;
+							}
+						}
+					}
+					& > ul{
+						.pagesVisit{
+							&:hover{
+								& > span,
+								& > div{
+									border-color: #f44336;
+									color: #f44336;
+								}								
+							}
+						}
+						.pagesDuration{
+							&:hover{
+								& > span,
+								& > div{
+									border-color: #ff9800;
+									color: #ff9800;
+								}
+							}
+						}
+					}
+				}
+				.anaBox{
+					.noData{
+						height: 420px - 40px;
+						font-size: 32px;
+						line-height: 420px - 40px;
+						text-align: center;
+						color: #ccc;
+					}
+					& > ul{
+						margin-top: 30px;
+						width: 100%;
+						max-width: 0;
+						opacity: 0;
+						@include transition($duration: 1s);
+						& > li{
+							$a: 10px;
+							margin-top: 10px;
+							& > p{
+								z-index: 2;
+								position: relative;
+								background-color: #fff;
+								white-space: nowrap;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								& > a{
+									display: block;
+									padding-left: $a/2;
+									width: 60%;
+									font-size: 14px;
+									font-weight: 900;
+									color: #90a4ae;
+									white-space: nowrap;
+									overflow: hidden;
+									text-overflow: ellipsis;
+									// @include transition($property :color);
+									&:hover{
+										color: #2196f3;
+									}
+								}
+							}
+							& > div{
+								$h: 30px;
+								position: relative;
+								margin-top: 4px;
+								width: 100%;
+								height: $h;
+								border-radius: 20px;
+								border-radius: $h;
+								@include background($angle: right,$webkit: left, $color1: #e91e63, $stop1: 0, $color2: #f44336, $stop2: 80%);
+								& > div{
+									position: absolute;
+									top: -$a;
+									height: 100%;
+									color: #fff;
+									line-height: $h;
+									border-radius: $h;
+									// white-space: nowrap;
+									overflow: hidden;
+									// text-overflow: ellipsis;
+									text-align: right;
+								}
+								.dataBarMask{
+									left: -$a;
+									padding-right: $a + 5px;
+									width: 0;
+									border: $a solid #fff;
+								}
+								.dataBar{
+									right: -$a*3 - 5px;
+									padding: $a;
+									background-color: #fff;
+								}
+							}					
+						}
+					}
+					.pageAnaUl{
+						max-width: 100%;
+						opacity: 1;
+					}
+					.pageDataUpdating{
+						max-width: 0;
+						opacity: 0;
+					}
+					.pagesDurationBar{
+						& > li{
+							& > div{
+								@include background($angle: right,$webkit: left, $color1: #ffc107, $stop1: 0, $color2: #ff9800, $stop2: 80%);
+							}
+						}
+					}
+				}
+			}
+			.locatAnaBox{
+				.locatAna{
+					// padding: 0;
+					// position: relative;
+					.anaAction{
+						& > ul{
+							.worldwide{
+								& > span,
+								& > div{
+									color: #2196f3;
+									border-color: #2196f3;
+								}
+								&:hover{
+									& > span,
+									& > div{
+										color: #2196f3;
+										border-color: #2196f3;
+									}
+								}
+							}
+							.china{
+								& > span,
+								& > div{
+									color: #ccc;
+									border-color: #ccc;
+								}
+								&:hover{
+									& > span,
+									& > div{
+										color: #f44336;
+										border-color: #f44336;
+									}
+								}
+							}
+						}
+						.chinaActived{
+							.worldwide{
+								& > span,
+								& > div{
+									color: #ccc;
+									border-color: #ccc;
+								}
+							}
+							.china{
+								& > span,
+								& > div{
+									color: #f44336;
+									border-color: #f44336;
+								}
+							}
+						}
+					}
+					.ve-map{
+						margin-top: 0%;
+					}
+				}
+			}
+			.productAnaBox{
+				width: 30%;
+				.anaBox{
+					& > ul{
+						& > li{
+							& > div{
+								@include background($angle: right,$webkit: left, $color1: #009688, $stop1: 0, $color2: #4caf50, $stop2: 80%);
+							}
+						}
+					}
+				}
+			}
+			.locatAnaBox{
+				width: 60%;
+			}
+			.pvAnaBox,
+			.pageAnaBox{
+				padding-right: $gap/2;
+			}
+			.locatAnaBox,
+			.productAnaBox{
+				padding-left: $gap/2;
+			}
+			// .pageAnaBox,
+			// .locatAnaBox{
+			// 	height: 800px;
+			// }
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

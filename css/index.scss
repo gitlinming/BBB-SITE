@@ -1,0 +1,206 @@
+@import 'initializ.scss';
+
+html,
+body{
+	// height: auto;
+	height: 100%;
+}
+#wrap{
+	z-index: 2;
+	position: relative;
+	height: 100%;
+	background-color: #fff;
+}
+#canvas,
+#canvasBlack{
+	position: fixed;
+	top: 0;
+	left: 0;
+	cursor: default;
+}
+#canvas{
+	z-index: 1;
+	left: 50%;
+	@include translate($x: -50%);
+}
+.canvasTop{
+	z-index: 2;
+}
+.index{
+	position: relative;
+	overflow: auto;
+	.intro{
+		position: absolute;
+		bottom: 48px;
+		width: auto;
+		outline: none;
+		@include respond('iphone'){
+			bottom: 16px;
+		}
+		@include userSelect();
+		& > li{
+			font-size: 36px;
+			font-weight: 700;
+		}
+	}
+	.clear{
+		z-index: 2;
+		position: absolute;
+		top: 50%;
+		width: auto;
+		margin-top: -21px - 110px;
+		padding-right: 0;
+		width: 0;
+		font-size: 24px;
+		font-weight: 700;	
+		line-height: 42px;
+		cursor: pointer;
+		overflow: hidden;
+		@include transition($property: width,$duration: .2s,$timingFunction: cubic-bezier(.57,.53,1,.62));
+		@include respond('iphoneP'){
+			top: auto;
+			bottom: -56px;
+			left: 50%;
+			padding-right: 12px;
+			margin-top: 0;
+			margin-left: -28px;
+			height: 56px;
+			width: 56px;
+			font-size: 0;
+			background-color: #fff;
+			border-radius: 50%;
+			box-shadow: 0 4px 10px #999;
+			text-align: center;
+			@include transition-transform($duration: .3s,$timingFunction: cubic-bezier(0.4, 0.0, 0.2, 1));
+			&:before{
+				@include icomoon($content: "\e243", $size:28px, $height: 56px, $color: #000);
+			}
+		}
+		&:hover{
+			color: #ccc;
+		}
+	}
+	.clearShow{
+		width: 80px;
+		@include respond('iphoneP'){
+			width: 56px;
+			height: 56px;
+			@include translate($y: -130px);
+		}
+		@include respond('iphone'){
+			@include translate($y: -100px);
+		}
+	}
+	.drag{
+		display: block;
+		z-index: 0;
+		width: 320px;
+		color: #ccc;
+		cursor: default;
+		// @include transition($property: width,$duration: 0s,$timingFunction: cubic-bezier(.57,.53,1,.62));
+		// &:hover{
+		// 	color: #ccc;
+		// }
+		@include respond('iphoneP'){
+			display: none;
+		}
+	}
+	.dragNoShow{
+		display: none;
+		overflow: hidden;
+		// @include transition($property: width,$duration: .2s,$timingFunction: cubic-bezier(.57,.53,1,.62));
+	}
+	.contactUsIndex{
+		z-index: 3;
+		position: fixed;
+		left: 0;
+		top: 50%;
+		width: 100%;
+		margin-top: -80px;
+		height: 200px;
+		& > h1,
+		& > p > a{
+			color: #fff;
+			text-align: center;
+		}
+		& > h1{
+			height: 100px;
+			font-size: 72px;
+			font-weight: 300;
+			line-height: 100px;
+			letter-spacing: 15px;
+			@include respond('ipadL'){
+				font-size: 60px;
+				height: 80px;
+				line-height: 80px;
+			}
+			@include respond('ipadP'){
+				font-size: 50px;
+				height: 80px;
+				line-height: 80px;
+			}
+		}
+		& > p{
+			height: 100px;
+			text-align: center;
+			& > a{
+				height: 100%;
+				font-size: 36px;
+				font-weight: 700;
+				line-height: 100px;
+				@include respond('ipadL'){
+					height: 80px;
+					line-height: 80px;
+				}
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	.cnBox{
+		z-index: 2;
+		position: absolute;
+		bottom: 48px;
+		right: 60px;
+		text-align: center;
+		border-radius: 50%;
+		@include respond('767px'){
+			display: none;
+		}
+		.cn{
+			z-index: 1;
+			position: relative;
+			padding: 10px;
+			width: 22px;
+			height: 22px;
+			color: #fff;
+			text-align: center;
+			line-height: 22px;
+			cursor: pointer;
+			@include userSelect();
+		}
+		.mask{
+			z-index: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+			border-radius: 50%;
+		}
+		.spreading{
+			@include scale($x: .7, $y: .7);
+			@include transition-transform($duration: .2s,$timingFunction: ease-out);
+		}
+		// .full{
+		// 	// @include scale($x: 60, $y: 60);
+		// 	@include transition-transform($duration: .3s, $timingFunction: ease-in);
+		// }
+		.clossing{
+			@include scale($x: 1, $y: 1);
+			@include transition-transform($duration: .4s,$timingFunction: ease-in);	
+		}
+	}
+}

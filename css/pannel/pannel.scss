@@ -1,0 +1,921 @@
+@import 'initializ.scss';
+
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+body{
+	background-color: #EFF3F6;
+}
+
+.noScroll{
+	overflow: hidden;
+}
+
+nav{
+	$height: 46px;
+	$top: 12px;
+	z-index: 20;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: $height + $top + $top;
+	border-bottom: 2px solid #3fa0ff;
+	@include background($angle: right,$webkit: left, $color1: #2E87F8,$color2: #2EA1F8);
+	.logo{
+		float: left;
+		margin: 11px+$top $pannelPadding;
+		// padding: 5px 10px;
+		height: $height - 20px;
+		color: #fff;
+		font-weight: bold;
+		line-height: $height - 20px;
+		// background-color: #1565c0;
+		border-radius: 4px;
+		cursor: default;
+		// & > a{
+		// 	color: #fff;
+		// }
+		& > div{
+			display: inline-block;
+			&:before{
+				@include icomoon($content: "\e904", $size: 24px, $height: auto, $color: #fff);
+			}
+		}
+		.logoA{
+			&:before{
+				color: #FFEB3B;
+				opacity: .8;
+			}
+		}
+		.logoB{
+			margin-left: -16px;
+			&:before{
+				color: red;
+				opacity: 1;
+			}
+		}
+	}
+	.navMenu{
+		margin-top: $top;
+		float: left;
+		& > li{
+			display: inline-block;
+			margin-right: 30px;
+			height: $height;
+			line-height: $height;
+			cursor: pointer;
+			& > a{
+				display: block;
+				$a: 8px;
+				padding-top: $a;
+				padding-bottom: $a - 5px;
+				height: $height - $a - $a;
+				line-height: $height - $a - $a;
+				color: #fff;
+				border-bottom: 2px solid transparent;
+				text-transform: capitalize;
+				// @include transition($property: border-color);
+				&:before{
+					margin-right: 2px;
+					vertical-align: top;
+					@include icomoon($content: "\e0", $size:16px, $height: $height - $a - $a, $color: #fff);
+				}
+				&:hover{
+					border-color: #fff;
+				}	
+			}
+			.router-link-active{
+				border-color: #fff;
+			}
+		}
+		.analysisMenu{
+			& > a{
+				&:before{
+					content: "\e8e5";
+					font-size: 22px;
+				}
+			}
+		}
+		.productsMenu{
+			& > a{
+				&:before{
+					content: "\e079";
+				}
+			}
+		}
+		.articleMenu{
+			& > a{
+				&:before{
+					content: "\e90a";
+				}
+			}
+		}
+		.helpMenu{
+			& > a{
+				&:before{
+					content: "\e8fd";
+				}
+			}
+		}
+		.galleryMenu{
+			& > a{
+				&:before{
+					content: "\e900";
+				}
+			}
+		}
+	}
+	.avatarBox{
+		float: right;
+		margin-right: -190px;
+		padding-left: 20px;
+		// padding-right: $pannelPadding;
+		height: 100%;
+		cursor: pointer;
+		@include transition-transform($duration: .4s);
+		&:hover{
+			@include translate($x: -190px);
+		}
+		&:hover>.pull>div>div{
+			$x: 0;
+			$y: 0;
+			$deg: 0;
+			-webkit-transform: translate($x,$y) rotate(-$deg);
+			   -moz-transform: translate($x,$y) rotate(-$deg);
+			    -ms-transform: translate($x,$y) rotate(-$deg);
+			     -o-transform: translate($x,$y) rotate(-$deg);
+			        transform: translate($x,$y) rotate(-$deg);			
+		}
+		& > li{
+			float: left;
+		}
+		.avatar{
+			$margin: 5px;
+			margin: $margin + $top 0;
+			height: $height - $margin - $margin;
+			width: $height - $margin - $margin;
+			color: #fff;
+			line-height: $height - $margin - $margin;
+			font-weight: bold;
+			border-radius: 50%;
+			background: #90caf9 no-repeat center;
+			background-size: cover;
+			text-align: center;
+			// &:before{
+			// 	@include icomoon($content: '\e903',$size: 18px,$height: $height - $margin - $margin - 2px);
+			// }
+		}
+		.hasAvatar{
+			&:before{
+				content: '';
+			}
+		}
+		.pull{
+			position: relative;
+			top: 38%;
+			// margin-right: 10px;
+			width: $height - 10px;
+			height: 24%;
+			& > div{
+				height: 50%;
+				text-align: center;
+				& > div{
+					margin: 0 auto;
+					height: 100%;
+					width: 2px;
+					background-color: #fff;
+					@include transition($duration: .4s);
+				}
+			}
+			$x: 0px;
+			$y: 2px;
+			$deg: 45deg;
+			.pullTop{
+				& > div{
+					border-radius: 2px 2px 0 0;
+					-webkit-transform: translate($x,$y) rotate(-$deg);
+					   -moz-transform: translate($x,$y) rotate(-$deg);
+					    -ms-transform: translate($x,$y) rotate(-$deg);
+					     -o-transform: translate($x,$y) rotate(-$deg);
+					        transform: translate($x,$y) rotate(-$deg);		
+				}
+			}
+			.pullBottom{
+				& > div{
+					border-radius: 0 0 2px 2px;
+					-webkit-transform: translate($x,-$y) rotate($deg);
+					   -moz-transform: translate($x,-$y) rotate($deg);
+					    -ms-transform: translate($x,-$y) rotate($deg);
+					     -o-transform: translate($x,-$y) rotate($deg);
+					        transform: translate($x,-$y) rotate($deg);
+				}
+			}
+		}
+		.avatarMenu{
+			// height: 100%;
+			padding: 5px 10px;
+			margin-top: 5px + $top;
+			margin-right: 5px;
+			font-size: 14px;
+			color: #fff;
+			line-height: $height - 20px;
+			border-radius: 4px;
+			background-color: transparent;
+			@include transition();
+			&:hover{
+				background-color: #2987d6;
+			}
+			&:before{
+				margin-right: 6px;
+				vertical-align: top;
+				@include icomoon($content: '\e906',$size: 14px,$height: $height - 20px);
+			}
+		}
+		.createAcount{
+			&:before{
+				content: '\e903';
+			}
+		}
+		.logout{
+			margin-right: 20px;
+			&:before{
+				content: '\e907';
+			}
+		}
+	}
+	.adminBox{
+		margin-right: -320px;
+		&:hover{
+			@include translate($x: -320px);
+		}
+	}
+}
+
+.overlayA,
+.overlay{
+	display: none;
+	z-index: 30;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(27,36,49,.9);
+	cursor: pointer;
+	overflow-x: hidden;
+	.tips{
+		text-align: center;
+		color: #7787a2;
+		line-height: 70px;
+		@include transition($property: color)
+	}
+	&:hover .tips{
+		color: #b2bdd0;
+	}
+}
+.overlay{
+	display: block;
+}
+.overlay-enter-active, .overlay-leave-active {
+  @include transition($property: opacity);
+}
+.overlay-enter, .overlay-leave-active {
+  opacity: 0
+}
+.acountManage{
+	z-index: 40;
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	margin-left: -235px;
+	width: 400px;
+	& > h1{
+		color: #fff;
+	}
+	.createAcountBox{
+		position: relative;
+		padding: 5px 50px 5px 20px;
+		margin-top: 15px;
+		height: 40px;
+		width: 100%;
+		background-color: #fff;
+		border-radius: 6px;
+		overflow: hidden;
+		@include transition();
+		.newEmail{
+			display: block;
+			height: 100%;
+			width: 100%;
+			font-size: 16px;
+			border: 0;
+			outline: none;
+			border-radius: 6px;
+		}
+		.createAcountConfirm{
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 50px;
+			height: 100%;
+			text-align: center;
+			cursor: pointer;
+			background-color: #fff;
+			@include transition($property: background-color);
+			border-radius: 0 6px 6px 0;
+			&:hover{
+				background-color: #eee;
+			}
+			&:after{
+				@include icomoon($content: '\e31b',$height: 50px,$color: #222);
+			}
+		}
+		.createAcountload{
+			display: none;
+			width: 100%;
+			height: 100%;
+			background-color: #03a9f4;
+			border-radius: 6px;
+			@include translate($x: -100%);
+			@include transition-transform($duration: .5s);
+		}
+	}
+	.creatingAcount{
+		padding: 0;
+		height: 8px;
+		.createAcountload{
+			display: block;
+		}
+		.createAcountload1{
+			@include translate($x: -80%);
+		}
+		.createAcountload2{
+			@include translate($x: -40%);
+		}
+		.createAcountload2{
+			@include translate($x: 0%);
+		}
+		.newEmail,
+		.createAcountConfirm{
+			display: none;
+		}
+	}
+	.subAcountBox{
+		margin-top: 50px;
+		& > h1{
+			color: #fff;
+		}
+		.subAcount{
+			margin-top: 15px;
+			overflow: hidden;
+			& > li{
+				$h: 57.5px;
+				float: left;
+				display: inline-block;
+				position: relative;
+				width: 57.5px;
+				height: $h;
+				margin-right: 11px;
+				margin-bottom: 11px;
+				padding-bottom: 26px;
+				& > div{
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+					cursor: pointer;
+					color: #fff;
+					font-size: 18px;
+					text-align: center;
+					line-height: $h;
+					background: #81d4fa no-repeat center;
+					background-size: cover;
+					@include transition($property: background-color);
+				}
+				.acountDelete{
+					// display: none;
+					position: absolute;
+					top: 0;
+					width: 100%;
+					height: $h;
+					background-color: #ef5350;
+					opacity: 0;
+					@include transition($property: opacity);
+					&:before{
+						@include icomoon($content: '\e92b',$height: $h,$color: #fff,$size: 24px);
+					}
+					&:hover{
+						opacity: 1;
+					}
+				}
+				& > p{
+					position: absolute;
+					bottom: 0;
+					left: 10%;
+					width: 80%;
+					font-size: 14px;
+					color: #fff;
+					text-align: center;
+					overflow: hidden;
+					overflow: hidden;
+    				white-space: nowrap;
+    				text-overflow: ellipsis;
+    				cursor: default;
+				}
+				&:nth-child(6n){
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}
+
+.profileWrap{
+	$backgroundColor: #42a5f5;
+	z-index: 40;
+	position: fixed;
+	margin-left: -198px;
+	top: 30%;
+	left: 50%;
+	width: auto;
+	& > h1{
+		width: 100%;
+		font-weight: 600;
+		color: #fff;
+		margin-bottom: 15px;
+	}
+	.profileBox{
+		position: relative;
+		padding: 20px 102px 20px 90px;
+		width: 200px;
+		background-color: $backgroundColor;
+		border-radius: 6px;
+		.profileAvatarBox{
+			position: absolute;
+			left: 0;
+			top: 0;
+			padding: 18px;
+			width: 66px;
+			height: 66px;
+			border-radius: 50%;
+			.profileAvatar{
+				width: 100%;
+				height: 100%;
+				background: #90caf9 no-repeat center;
+				background-size: cover;
+				border-radius: 50%;
+				& > img{
+					width: 100%;
+					height: 100%;
+					opacity: 0;
+				}
+			}
+			.avatarChange{
+				position: absolute;
+				bottom: 18px;
+				right: 18px;
+				width: 26px;
+				height: 26px;
+				border-radius: 50%;
+				background-color: #e91e63;
+				cursor: pointer;
+				text-align: center;
+				overflow: hidden;
+				&:before{
+					@include icomoon($content: '\e901',$height: 28px,$color: #fff,$size: 12px);
+				}
+				& > input{
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					font-size: 900px;
+					opacity: 0;
+					cursor: pointer;
+				}
+			}
+		}
+		.profileInfoBox{
+			overflow: hidden;
+			& > div{
+				cursor: pointer;
+				&:before{
+					vertical-align: top;
+					// @include icomoon($content: '\e905',$height: 30px,$size: 16px);
+				}
+				& > input{
+					padding: 0 12px;
+					width: 165px;
+					font-size: 22px;
+					font-weight: bold;
+					color: #fff;
+					background-color: $backgroundColor;
+					border: none;
+					outline: none;
+					@include transition();
+					&:hover,
+					&:focus{
+						border-radius: 6px;
+						background-color: #1976d2;
+					}
+				}
+				.profileUserName{
+					height: 36px;
+					@include placeholder($size: 25px, $color: #bbdefb);
+				}
+				.profileEmail{
+					height: 26px;
+					font-size: 16px;
+					font-weight: normal;
+					@include placeholder($size: 16px, $color: #bbdefb);
+				}
+			}
+			.profileUserNameBox{
+				&:before{
+					// content: '\e903';
+					line-height: 38px;
+				}
+			}
+			.profileEmailBox{
+				&:before{
+					line-height: 28px;
+				}
+			}
+		}
+		.profileConfirmBox{
+			$height: 58px;
+			position: absolute;
+			right: 0;
+			top: 0;
+			padding: 22px 0 22px;
+			padding-right: 5px;
+			width: 97px;
+			height: $height;
+			font-size: 17px;
+			line-height: $height;
+			color: #fff;
+			text-align: center;
+			background-color: $backgroundColor;
+			cursor: pointer;
+			// border-left: 1px solid #fff;
+			border-radius: 0 6px 6px 0;
+			@include transition($property: background-color);
+			.profileConfirm{
+				border-left: 1px solid #bbdefb;
+				@include transition();
+				&:before{
+					margin-right: 5px;
+					vertical-align: top;
+					@include icomoon($content: '\e042',$height: $height,$size: 18px);
+				}
+			}
+			.loading{
+				display: none;
+				& > li{
+					background-color: #fff;
+				}
+			}
+			&:hover{
+				// color: #1565c0;
+				background-color: #1976d2;
+			}
+			&:hover .profileConfirm{
+				border-color: #1976d2;
+			}
+			&:hover:before{
+				// color: #1565c0;
+			}
+		}
+		.profileProcessing{
+			background-color: #1976d2;
+			.profileConfirm{
+				display: none;
+			}
+			.loading{
+				display: block;
+				padding-top: 27px;
+				padding-left: 34px;
+			}
+		}
+	}
+}
+
+.pannelProgressWarp{
+	z-index: 40;
+	position: fixed;
+	left: 50%;
+	top: 40%;
+	margin-left: -260px;
+	padding: 0 20px;
+	width: 100%;
+	max-width: 500px;
+	height: 200px;
+	.pannelProgressBox{
+		width: 100%;
+		height: 10px;
+		border-radius: 10px;
+		background-color: #aab9bf;
+		overflow: hidden;
+		.pannelProgress{
+			width: 100%;
+			height: 100%;
+			border-radius: 10px;
+			background-color: #4fc3f7;
+			@include transition-transform($duration: .4s);
+		}
+	}
+	.pannelProgressInfo{
+		padding: 10px 0;
+		margin-top: 10px;
+		margin-left: 10%;
+		width: 80%;
+		border-radius: 8px;
+		cursor: default;
+		@include transition();
+		& > p{
+			padding: 0 20px;
+			font-size: 14px;
+			color: #edf7fb;
+			text-align: center;
+		}
+		& > ul{
+			display: none;
+			padding: 10px 20px 0;
+			& > li{
+				margin-top: 2px;
+				font-size: 12px;
+				color: #bbcfd8;
+			}
+		}
+	}
+}
+.showPannelProgress{
+	.pannelProgressInfo{
+		background-color: rgba(170, 185, 191, 0.27);
+		& > ul{
+			display: block;
+		}
+	}
+}
+.loading{
+	$width: 9px;
+	display: inline-block;
+	height: $width;
+	& > li{
+		float: left;
+		width: $width;
+		height: $width;
+		border-radius: 50%;
+	}
+	.loadBall1{
+		background-color: #144BAF;
+		animation: loadBall .6s infinite ease-out .2s;
+	}
+	.loadBall2{
+		margin: 0 4px;
+		background-color: #FABED7;
+		animation: loadBall .6s infinite ease-out .1s;
+	}
+	.loadBall3{
+		background-color: #FA5A3C;
+		animation: loadBall .6s infinite ease-out;
+	}
+	@keyframes loadBall {
+		50%{
+			$y: 5px;
+			-webkit-transform: translatey($y);
+			   -moz-transform: translatey($y);
+				-ms-transform: translatey($y);
+				 -o-transform: translatey($y);
+					transform: translatey($y);
+		}
+	}
+}
+.loadMore{
+	text-align: center;
+	& > div{
+		display: inline-block;
+		padding: 8px 20px;
+		color: #fff;
+		height: 20px;
+		font-size: 14px;
+		line-height: 20px;
+		background-color: #273142;
+		border-radius: 4px;
+		cursor: pointer;
+		@include transition($property: background-color);
+		&:hover{
+			background-color: #4c586d;
+		}
+	}
+}
+.searchBox{
+	$height: 46px;
+	$width: $height - 12px;
+	position: relative;
+	margin: 6px auto;
+	padding-left: 10px;
+	padding-right: $width;
+	width: 180px;
+	height: $width;
+	background-color: #1B2431;
+	border-radius: 4px;
+	& > input{
+		height: 100%;
+		width: 100%;
+		font-size: 14px;
+		color: #e5e8ec;
+		border: 0;
+		border-radius: 2px;
+		background-color: #1B2431;
+		outline: none;
+		&::-webkit-input-placeholder{
+			color:#7787a2;
+			@include transition($property: color);
+		}
+		&:-moz-placeholder{
+			color:#7787a2;
+			@include transition($property: color);
+		}
+		&::-moz-placeholder{
+			color:#7787a2;
+			@include transition($property: color);
+		}
+		&:-ms-input-placeholder{
+			color:#7787a2;
+			@include transition($property: color);
+		}
+		&:focus{
+			border-color: #6c7e9a;
+			&::-webkit-input-placeholder{
+				font-size: 0;
+				color:#1B2431!important;
+			}
+			&:-moz-placeholder{
+				font-size: 0;
+				color:#1B2431!important;
+			}
+			&::-moz-placeholder{
+				font-size: 0;
+				color:#1B2431!important;
+			}
+			&:-ms-input-placeholder{
+				font-size: 0;
+				color:#1B2431!important;
+			}
+		}
+	}
+	.search{
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: $width;
+		height: 100%;
+		text-align: center;
+		cursor: pointer;
+		&:before{
+			width: $width;
+			@include icomoon($content: "\e8b6", $size:20px, $height: $width, $color: #7787a2);
+			@include transition($property: color);
+		}
+	}
+	&:hover .search{
+		&:before{
+			color: #fff;
+		}
+	}
+	&:hover input{
+		&::-webkit-input-placeholder{
+			color:#fff;
+		}
+		&:-moz-placeholder{
+			color:#fff;
+		}
+		&::-moz-placeholder{
+			color:#fff;
+		}
+		&:-ms-input-placeholder{
+			color:#fff;
+		}
+	}
+}
+
+.sildeUp-enter-active, .sildeUp-leave-active {
+ 	@include transition();
+}
+.sildeUp-enter, .sildeUp-leave-active {
+	transform: translatey(10px);
+ 	opacity: 0
+}
+.fadeIn-enter-active, .fadeIn-leave-active {
+	// margin-top: 0!important;
+ 	@include transition($property: opacity);
+ 	// will-change: opacity;
+}
+.fadeIn-enter, .fadeIn-leave-active {
+ 	opacity: 0;
+}
+.uploadWrap{
+	$padding: 13px;
+	display: none;
+	z-index: 40;
+	position: absolute;
+	top: 70px + 90px;
+	left: 50%;
+	padding: $padding;
+	margin-bottom: 70px;
+	margin-left: -150px;
+	width: 304px;
+	background-color: #fff;
+	border-radius: 4px;
+	cursor: default;
+	@include transition-transform();
+	.uploadBox{
+		width: 300px;
+		height: auto;
+		background-color: #f5f5f5;
+		border: 2px dashed #ccc;
+		font-size: 0;
+		.imagePreview{
+			width: 100%;
+			height: auto;
+		}
+	}
+	.uploadDescription{
+		margin: $padding+$padding 2px;
+		height: auto;
+		min-height: 30px;
+		font-size: 16px;
+		line-height: 26px;
+		outline: none;
+		border: 0;
+		border-bottom: 1px solid #ccc;
+		cursor: text;
+		&[placeholder]:empty:before{
+			content: attr(placeholder);
+			color: #ccc;
+		}
+		&[placeholder]:focus:before{
+			content: none;
+		}
+	}
+	.uploadButton{
+		$height: 30px;
+		position: relative;
+		margin: $padding+$padding auto $padding;
+		width: 120px;
+		height: $height;
+		color: #fff;
+		font-size: 14px;
+		text-align: center;
+		line-height: $height;
+		background-color: #607d8b;
+		border-radius: 20px;
+		cursor: pointer;
+		overflow: hidden;
+		@include transition($property: background-color);
+		&:hover{
+			background-color: #455a64;
+		}
+		.progressBar{
+			z-index: 10;
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: $height;
+			background-color: #66bb6a;
+			@include transition-transform($duration: 1s);
+			will-change: unset;
+		}
+		& > ul{
+			z-index: 20;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: $height*3;
+			@include transition-transform($duration: .5s);
+			& > li{
+				width: 100%;
+				height: $height;
+			}
+		}
+		.uploading{
+			@include translate($y:-30px);
+		}
+		.success{
+			@include translate($y:-60px);
+		}
+	}
+}
+
+.uploadWrapActived{
+	@include translate($y:-40px);
+}
+
+
+
