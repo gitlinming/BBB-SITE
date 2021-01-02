@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+      <head>
+            <meta charset="UTF-8" />
+            <meta name="keywords" content="desgin,studio,web design,web development," />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="renderer" content="webkit"> 
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+            <title>BBB PANEL</title>
+            <link rel="stylesheet" type="text/css" href="css/pannel/pannelGlobal.css" />
+            <link rel="stylesheet" type="text/css" href="css/pannel/pannel.css" />
+            <link rel="stylesheet" type="text/css" href="css/pannel/pannelAnalysis.css" />
+            <link rel="stylesheet" type="text/css" href="css/pannel/gallery.css" />
+            <link rel="stylesheet" type="text/css" href="css/pannel/pannelProducts.css" />
+            <link rel="stylesheet" type="text/css" href="css/pannel/pannelProductsEdit.css" />
+            <link rel="stylesheet" type="text/css" href="css/pannel/pannelHelp.css" />
+            <script src="../js/vue.js"></script>
+            <script src="../js/vue-router.js"></script>
+      </head>
+      <body>
+            <div id="pannel">
+                  <nav class="navgation">
+                        <div class="logo">
+                              <div class="logoA"></div>
+                              <div class="logoB"></div>
+                        </div>
+                        <ul class="navMenu">
+                              <li v-for="item in menuList" :class="item.class" ><router-link :to="item.link">
+                              {{item.message}}</router-link></li>
+                        </ul>
+                        <ul :class="[avatarBox,{ adminBox: admin }]">
+                              <li :class="[avatarClass, { hasAvatar: hasAvatar }]" :style="{ backgroundImage: profileAvatar }">{{avatarName(profileName)}}</li>
+                              <li class="pull">
+                                    <div class="pullTop">
+                                          <div></div>
+                                    </div>
+                                    <div class="pullBottom">
+                                          <div></div>
+                                    </div>
+                              </li>
+                              <li class="avatarMenu profile"@click="profileButton" >Setting</li>
+                              <li class="avatarMenu createAcount" v-if="admin" @click="createAcountButton" >Management</li>
+                              <li class="avatarMenu logout" @click="logout">Logout</li>
+                        </ul>
+                  </nav>
+                  <transition name="overlay">
+                        <div class="overlay" v-show="overlay" @click="overlayClose" style="display: none;">
+                              <p class="tips">{{overlayTip}}</p>
+                        </div>
+                  </transition>
+                  <transition name="sildeUp">
+                        <div :class="[pannelProgressWarp,{ showPannelProgress: pannelProgressShow }]" v-show="pannelProgress" style="display: none;" @click="showPannelProgress">
+                              <div class="pannelProgressBox">
+                                    <div class="pannelProgress" :style="{transform: 'translate(-'+pannelProgressWidth+'%)'}"></div>
+                              </div>
+                              <div class="pannelProgressInfo">
+                                    <p>{{pannelProgressInfo}}</p>
+                                    <ul>
+                                          <li v-for="i in pannelProgressInfoList">{{i.name}}</li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </transition>
+                  <transition name="sildeUp">
+                        <div class="acountManage" v-if="admin" v-show="createAcountBox" style="display: none;">
+                              <h1>创建新账号</h1>
+                              <div :class="[createAcountBoxClass, { creatingAcount: creatingAcount }]" >
+                                    <div class="createAcountload"></div>
+                                    <input class="newEmail" type="text" placeholder="输入新用户的邮箱" autofocus="autofocus" @keyup.enter="createAcount" v-model="newEmail"/>
+                                    <div class="createAcountConfirm" @click="createAcount"></div>
+                              </div>
+                              <!-- <div class="subAcountBox"> -->
+                              <div class="subAcountBox" v-show="subAcount.length > 0">
+                                    <h1>管理账号</h1>
+                                    <ul class="subAcount">
+                                          <li v-for="(i,index) in subAcount">
+                                                <div :style="{ backgroundImage: subAvatar(i.get('avatarUrl')) }">{{dressName(i)}}</div>
+                                                <div class="acountDelete" @click="acountDelete(i.id,i.get('username'),index)"></div>
+                                                <p :title="i.get('username')">{{i.get("username")}}</p>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </transition>
+                  <transition name="sildeUp">
+                        <div class="profileWrap" v-show="profileBox" style="display: none;">
+                              <h1>用户设置</h1>
+                              <div class="profileBox">
+                                    <div class="profileAvatarBox">
+                                          <div :class="[profileAvatarClass,{ hasAvatar: hasAvatar }]" :style="{ backgroundImage: profileAvatar }"></div>
+                                          <div class="avatarChange">
+                                                <input class="avatarInput" type="file" onchange="preview(this,1)" accept="image/jpg, image/jpeg, image/png, image/gif" @click="avatarInputClick" />
+                                          </div>
+                                    </div>
+                                    <div class="profileInfoBox">
+                                          <div class="profileUserNameBox">
+                                                <input class="profileUserName" type="text" v-model="profileName" placeholder="新用户名">
+                                          </div>
+                                          <div class="profileEmailBox">
+                                                <input class="profileEmail" type="text" v-model="profileEmail" placeholder="新邮箱">
+                                          </div>
+                                    </div>
+                                    <div :class="[profileConfirmBoxClass,{ profileProcessing: processing }]" @click="profileConfirm">
+                                          <div class="profileConfirm">保存</div>
+                                          <loading></loading>
+                                    </div>
+                              </div>
+                        </div>
+                  </transition>
+                  <div class="overlayA"  title="点击返回" style="display: none;">
+                        <p class="tips">点击背景返回</p>
+                        <div class="uploadWrap">
+                              <div id="preview" class="uploadBox"></div>
+                              <div class="uploadDescription" placeholder="可添加描述，以便于搜索" contenteditable="ture"></div>
+                              <div class="uploadButton">
+                                    <div class="progressBar"></div>
+                                    <ul class="uploadStatus">
+                                          <li>上传</li>
+                                          <li>上传中</li>
+                                          <li>成功</li>
+                                    </ul>
+                              </div>
+                        </div>
+                  </div>
+                  <!-- <transition name="fadeIn"> -->
+                        <router-view :id="id" :file-url="fileUrl" :file-caption="fileCaption" :resolution="resolution" :created-time="createdTime" :author-name="authorName" :file-size="fileSize" :author-id="authorId" :file-id="fileId" :link="link" :placeholder="placeholder" :contenteditable-check="contenteditableCheck" :caption-edit-box-active="captionEditBoxActive" :list-edit-active="listEditActive" :img-detail-box-show="imgDetailBoxShow" :items="items" :gallery-refer-count="galleryReferCount" :gallery-refer="galleryRefer" :gallery-loading="galleryLoading" :gallery-load-finished="galleryLoadFinished" :products-img-overlay-show="productsImgOverlayShow" :please-add-img="pleaseAddImg" :page-action-count="pageActionCount" :container-width="containerWidth" :container-transform="containerTransform" :current-product-img="currentProductImg" :post-data-images="postDataImages" :products-list="productsList" :products-loading="productsLoading" :products-search-show="productsSearchShow" :products-search-content="productsSearchContent" :products-load-finished="productsLoadFinished" :slider-image="sliderImage" :products-gallery-count="productsGalleryCount" :img-select-list="imgSelectList" :product-cover="productCover"></router-view>
+                  <!-- </transition> -->
+            </div>
+            <script src="https://cdn.bootcss.com/blueimp-md5/2.8.0/js/md5.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+            <script src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+            <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript"src="js/jquery.min.js">\x3C/script>')</script>
+            <script src="https://cdn1.lncld.net/static/js/2.1.4/av-min.js"></script>
+            <script src="js/pannel/pannel.js"></script>
+            <script src="js/pannel/pannelGlobal.js"></script>
+            <script src="js/pannel/echarts.min.js"></script>
+            <script src="js/pannel/index.js"></script>
+            <script src="js/pannel/datePicker.js"></script>
+            <script src="js/pannel/pannelAnalysis.js"></script>
+            <script src="js/pannel/pannelGallery.js"></script>
+            <script src="js/pannel/pannelProducts.js"></script>
+            <script src="js/pannel/pannelProductsEdit.js"></script>
+            <script src="js/pannel/pannelArticleEdit.js"></script>
+            <script src="js/pannel/pannelHelp.js"></script>
+            <script src="js/pannel/pannelRouter.js"></script>
+      </body>
+</html>
