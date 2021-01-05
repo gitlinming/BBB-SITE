@@ -51,7 +51,8 @@ var navigation = {
 	},
 	data: function(){
 		return {
-			menu: ['work','lab','about','contact'],
+			// menu: ['work','lab','about','contact'],
+			menu: ['work','about','contact'],
 			navBox: 'navBox',
 			navWhite: false,
 			backgorundNav: false,

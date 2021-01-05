@@ -94,9 +94,9 @@ var contact = {
 				</li>\
 				<li>\
 					<h4>more works</h4>\
-					<p><a target="_blank" href="https://www.behance.net/BBBStudio" rel="noopener">Bēhance</a></p>\
+					<p style="display: none;"><a target="_blank" href="https://www.behance.net/BBBStudio" rel="noopener">Bēhance</a></p>\
 					<p><a target="_blank" href="https://dribbble.com/bbbstudio" rel="noopener">Dribbble</a></p>\
-					<p><a target="_blank" href="https://www.instagram.com/bbbstud.io/" rel="noopener">Instagram</a></p>\
+					<p style="display: none;"><a target="_blank" href="https://www.instagram.com/bbbstud.io/" rel="noopener">Instagram</a></p>\
 				</li>\
 				<li>\
 					<h4>visit</h4>\
@@ -106,7 +106,7 @@ var contact = {
 				</li>\
 				<li class="call">\
 					<h4>call</h4>\
-					<p><a href="tel:+610413200541">+61(0)413 200 541</a></p>\
+					<p><a href="tel:+8618675572770">+86 186 7557 2770</a></p>\
 				</li>\
 			</ul>\
 			<div class="sayHiBox colD12" @mouseup="fill">\
