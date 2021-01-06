@@ -11,7 +11,7 @@ var src = ['./js/lodash.min.js','./js/vue.min.js','./js/vue-resource.js','./js/v
 
 gulp.task('js', function() {
 	return	gulp.src(src)
-  			.pipe(concat('main0408.js'))
+  			.pipe(concat('main20210105.js'))
   			.pipe(babel())
   			.pipe(stripDebug())
   			.pipe(uglify())

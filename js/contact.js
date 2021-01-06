@@ -93,16 +93,16 @@ var contact = {
 					<p><a :href="mailto(join)">{{join}}</a></p>\
 				</li>\
 				<li>\
-					<h4>more works</h4>\
-					<p style="display: none;"><a target="_blank" href="https://www.behance.net/BBBStudio" rel="noopener">Bēhance</a></p>\
-					<p><a target="_blank" href="https://dribbble.com/bbbstudio" rel="noopener">Dribbble</a></p>\
-					<p style="display: none;"><a target="_blank" href="https://www.instagram.com/bbbstud.io/" rel="noopener">Instagram</a></p>\
-				</li>\
-				<li>\
 					<h4>visit</h4>\
 					<p>34A, CR Land Building</p>\
 					<p>Nanshan</p>\
 					<p>Shenzhen</p>\
+				</li>\
+				<li>\
+					<h4>more works</h4>\
+					<p style="display: none;"><a target="_blank" href="https://www.behance.net/BBBStudio" rel="noopener">Bēhance</a></p>\
+					<p><a target="_blank" href="https://dribbble.com/bbbstudio" rel="noopener">Dribbble</a></p>\
+					<p style="display: none;"><a target="_blank" href="https://www.instagram.com/bbbstud.io/" rel="noopener">Instagram</a></p>\
 				</li>\
 				<li class="call">\
 					<h4>call</h4>\

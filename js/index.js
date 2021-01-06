@@ -10,7 +10,7 @@ var home = {
 				<div :class="[colD12,colDP4,clear,{clearShow: clearShow}]" @click="clearCanvas">clear</div>\
 				<div :class="[colD12,colDP4,clear,{clearShow: !clearShow},{dragNoShow: clearShow},drag]" @click="clearCanvas">Click and drag your mouse</div>\
 				<div class="contactUsIndex" v-show="contactUs">\
-					<h1>看不懂英文的请联系</h1>\
+					<h1>请联系</h1>\
 					<p><a :href="mailto(helloEmail)">{{helloEmail}}</a></p>\
 				</div>\
 				<div class="cnBox">\

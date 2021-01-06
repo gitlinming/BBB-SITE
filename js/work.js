@@ -10,12 +10,12 @@ var work = {
 			<loading :class="{loadingShow: loadingShow,loadingClose: works.length > 0}"></loading>\
 			<div v-show="works.length > 0" id="function" class="colD12 function">\
 				<ul >\
-					<li style="display: none;" v-for="i in thisYear">\
+					<li v-for="i in thisYear">\
 						<p>{{add(i)}}</p>\
 						<p>{{i}}</p>\
 						<p>{{sub(i)}}</p>\
 					</li>\
-					<p style="font-size: 72px;font-weight: bold;">Featured works</p>\
+					<p>Featured works</p>\
 				</ul>\
 				<div :class="[shuffle,{shuffleHover: shuffleHover}]" @mousedown="shuffleStart" @touchstart="shuffleStart" @mouseup="shuffleEnd">\
 					<div>\

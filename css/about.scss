@@ -47,7 +47,7 @@
 				&:before{
 					position: absolute;
 					top: -38px;
-					content: attr(class);
+					content: attr(title);
 					font-size: 18px;
 					font-weight: bold;
 					line-height: 30px;

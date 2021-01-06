@@ -125,7 +125,7 @@ nav{
 		margin-top: 40px;
 	}
 	@include respond('iphoneP'){
-		top: -280px;
+		top: -220px;
 		margin-top: 0;
 		padding-top: $bodyPaddingP;
 	}
@@ -353,7 +353,7 @@ nav{
 	@include respond('767px'){
 		padding-bottom: 14px;
 		background-color: transparent;
-		@include translate($y: 280px);
+		@include translate($y: 220px);
 		.mask{
 			@include translate($y: 113px);
 		}
@@ -567,7 +567,7 @@ nav{
 	}
 	.navMaskHalf{
 		@include transition-transform($delay: .2s);
-		@include translate($y: 350px);
+		@include translate($y: 290px);
 	}
 	.navMaskFull{
 		@include transition-transform($delay: 0s,$duration: .3s);

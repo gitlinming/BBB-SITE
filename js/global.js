@@ -213,7 +213,7 @@ function getPostData(app){
           params: {
             'limit': postQueryLimit,
             'skip': postQueryCount*postQueryLimit,
-            'order': '-createdAt'
+            'order': '-updatedAt'
           },
         }
       ).then(function(response){

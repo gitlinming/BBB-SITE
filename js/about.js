@@ -6,13 +6,13 @@ var about = {
 	template: '\
 		<div class="about">\
 			<ul class="header colD12">\
-				<li>we do design & development.</li>\
+				<li>we do design.</li>\
 				<li class="lie">only with bold and optimistic mind.</li>\
 				<li class="actually">and we wont charge cheap.</li>\
 			</ul>\
 			<div class="sevicesBox colD12">\
 			    <div class="designBox">\
-			          <div class="design">\
+			          <div class="design" title="meeting">\
 			                <ul class="meeting">\
 			                      <li class="meeting1"></li>\
 			                      <li class="meeting2"></li>\
@@ -20,7 +20,7 @@ var about = {
 			          </div>\
 			    </div>\
 			    <div class="strategyBox">\
-			          <div class="strategy">\
+			          <div class="strategy" title="strategy">\
 			                <ul class="survey">\
 			                      <li class="survey1"></li>\
 			                      <li class="survey2"></li>\
@@ -31,7 +31,7 @@ var about = {
 			          </div>\
 			    </div>\
 			    <div class="developmentBox">\
-			          <div class="development">\
+			          <div class="development" title="design">\
 			                <ul class="hardWork">\
 			                      <li class="hardWork1"></li>\
 			                      <li class="hardWork2"></li>\
@@ -39,7 +39,7 @@ var about = {
 			          </div>\
 			    </div>\
 			    <div class="creativeBox">\
-			          <div class="creative">\
+			          <div class="creative" title="creative">\
 			                <ul class="delivery">\
 			                      <li class="box1"></li>\
 			                      <li class="box2"></li>\
